@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+# Wheels (never committed)
+*.whl
+# Scratch output from running generated scripts
+_run_output/
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+pytest-cache-files-*/
+.coverage
+coverage.xml
+htmlcov/
+desktop.ini
+# Other tool caches and scratch files
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+*.log
+*.tmp
+*.bak
+.env

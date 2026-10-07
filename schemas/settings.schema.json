@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sys-bio/sed2-test-suite/schemas/settings.schema.json",
+  "title": "SED2 test case settings (NNNNN.settings.json)",
+  "type": "object",
+  "required": ["schemaVersion", "tolerances", "provenance", "backends"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "tolerances": { "$ref": "#/$defs/tolerances" },
+    "reports": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "$ref": "#/$defs/report" }
+    },
+    "plots": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/id" },
+      "additionalProperties": { "$ref": "#/$defs/plot" }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "enum": ["analytical", "simulation"] },
+        "simulators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "version"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "$ref": "#/$defs/backendName" },
+              "version": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "notes": { "type": "string" }
+      },
+      "if": { "properties": { "source": { "const": "simulation" } } },
+      "then": { "required": ["simulators"], "properties": { "simulators": { "minItems": 1 } } }
+    },
+    "backends": {
+      "description": "Backends that were run and agreed with the expected results. The translator must keep supporting these for this test.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/backendName" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$" },
+    "backendName": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "tolerances": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "absolute": { "type": "number", "minimum": 0 },
+        "relative": { "type": "number", "minimum": 0 }
+      }
+    },
+    "report": {
+      "type": "object",
+      "required": ["file", "format"],
+      "additionalProperties": false,
+      "properties": {
+        "file": { "type": "string", "minLength": 1, "pattern": "^[^/\\\\]+$" },
+        "format": { "enum": ["csv", "h5"] },
+        "ndim": { "type": "integer", "minimum": 0, "maximum": 2 },
+        "dtype": { "enum": ["number", "string"] },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": { "rows": { "type": "boolean" }, "columns": { "type": "boolean" } }
+        },
+        "tolerances": { "$ref": "#/$defs/tolerances" },
+        "compare": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": { "enum": ["full", "lastRow", "keyedRows"] },
+            "note": { "type": "string" }
+          }
+        }
+      },
+      "if": { "properties": { "format": { "const": "csv" } } },
+      "then": { "required": ["ndim"] }
+    },
+    "plot": {
+      "type": "object",
+      "required": ["file", "format", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "file": { "type": "string", "minLength": 1, "pattern": "^[^/\\\\]+$" },
+        "format": { "enum": ["csv", "h5"] },
+        "type": { "enum": ["plot2D", "plot3D"] },
+        "tolerances": { "$ref": "#/$defs/tolerances" }
+      },
+      "allOf": [
+        { "if": { "properties": { "type": { "const": "plot2D" } } }, "then": { "properties": { "format": { "const": "csv" } } } },
+        { "if": { "properties": { "type": { "const": "plot3D" } } }, "then": { "properties": { "format": { "const": "h5" } } } }
+      ]
+    }
+  }
+}

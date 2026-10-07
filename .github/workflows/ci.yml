@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install tool dependencies
+        run: pip install -r requirements.txt
+
+      # libsed2 is a build artifact of sys-bio/SED2 and is not on PyPI.  If the repository secret SED2_TOKEN
+      # (a token that can read sys-bio/SED2 releases) is set, the newest wheel is installed and documents are
+      # validated; otherwise document validation is skipped and the job says so.
+      - name: Install libsed2
+        id: libsed2
+        env:
+          GH_TOKEN: ${{ secrets.SED2_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::SED2_TOKEN is not set; SED2 documents will not be validated with libsed2"
+            exit 0
+          fi
+          mkdir -p "$RUNNER_TEMP/libsed2"
+          gh release download --repo sys-bio/SED2 --pattern 'libsed2-*.whl' --dir "$RUNNER_TEMP/libsed2"
+          pip install "$RUNNER_TEMP"/libsed2/libsed2-*.whl
+          echo "available=true" >> "$GITHUB_OUTPUT"
+
+      - name: Tests for the tools
+        run: python -m pytest
+
+      - name: Tag blocks are up to date
+        run: python generate_tags.py --all --check
+
+      - name: SBML files are up to date
+        run: python -m sed2suite.make_inputs --all --check
+        env:
+          PYTHONPATH: tools
+
+      - name: Validate every case
+        run: python -m sed2suite.validate_suite ${{ steps.libsed2.outputs.available != 'true' && '--no-libsed2' || '' }}
+        env:
+          PYTHONPATH: tools

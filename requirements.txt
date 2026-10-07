@@ -1,0 +1,10 @@
+# Tools for the sed2-test-suite (Python 3.10 or later; tested on 3.13)
+numpy>=2.2
+h5py>=3.10
+jsonschema>=4.18
+pytest>=8
+# Authoring only (making SBML from Antimony):
+antimony>=3.2
+python-libsbml>=5.21
+# Validation of cases needs the libsed2 wheel from https://github.com/sys-bio/SED2/ releases:
+#   pip install libsed2-<version>-py3-none-any.whl
