@@ -69,8 +69,7 @@
       "string-data": "A report or task produces string-valued data.",
       "labeled-data": "A report has row or column labels.",
       "multi-dimensional": "A report has more than two dimensions (HDF5 result).",
-      "variable-step-output": "The number and positions of output rows are chosen by the simulator, so results cannot be compared row by row.",
-      "backend-subset": "Not all of roadrunner, COPASI and OpenCOR can run this test; settings.json lists those that can."
+      "variable-step-output": "The number and positions of output rows are chosen by the simulator, so results cannot be compared row by row."
     },
     "prefixes": {
       "sbml": "A feature of an SBML input model, e.g. sbml:events, sbml:algebraicRule.",

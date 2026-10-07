@@ -28,7 +28,6 @@ from . import compare, make_inputs, results_io as rio, settings as st, tags
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 SEMANTIC_DIR = os.path.join(ROOT, "cases", "semantic")
 
-ALL_BACKENDS = ("roadrunner", "copasi", "opencor")
 CASE_ID_RE = re.compile(r"^\d{5}$")
 REPORT_TYPE = "report"
 PLOT_TYPES = ("plot2D", "plot3D")
@@ -106,8 +105,6 @@ def derive_semantic(doc: dict, settings: dict, case_dir: str) -> set:
         derived.add("constants-only")
     if settings["provenance"]["source"] == "analytical":
         derived.add("analytical")
-    if not set(ALL_BACKENDS) <= set(settings["backends"]):
-        derived.add("backend-subset")
     for spec in settings.get("reports", {}).values():
         if spec.get("dtype") == "string":
             derived.add("string-data")
@@ -136,7 +133,7 @@ def derive_semantic(doc: dict, settings: dict, case_dir: str) -> set:
 
 
 # Semantic tags that derive_semantic can decide.  A case must carry exactly the derived ones among these.
-CHECKED_SEMANTIC = {"constants-only", "analytical", "backend-subset", "string-data", "multi-dimensional",
+CHECKED_SEMANTIC = {"constants-only", "analytical", "string-data", "multi-dimensional",
                     "labeled-data", "special-values"}
 
 

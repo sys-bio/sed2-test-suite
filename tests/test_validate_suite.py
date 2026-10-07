@@ -155,10 +155,8 @@ def test_derived_semantic_tags_checked(tmp_path):
     assert "special-values" in messages(vs.validate_case(str(d2), VOCAB, use_libsed2=False))
 
 
-def test_derive_special_values_and_backend_subset(tmp_path):
-    s = copy.deepcopy(SETTINGS)
-    s["backends"] = ["roadrunner"]
-    d = make_case(tmp_path, settings=s, semantic=("analytical", "constants-only", "backend-subset", "special-values"))
+def test_derive_special_values(tmp_path):
+    d = make_case(tmp_path, semantic=("analytical", "constants-only", "special-values"))
     rio.write_csv(str(d / "00001.rep1.csv"), rio.AnnotatedData(np.array([1.0, float("nan")])))
     assert errors(vs.validate_case(str(d), VOCAB, use_libsed2=False)) == []
 
