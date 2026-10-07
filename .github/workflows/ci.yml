@@ -18,23 +18,21 @@ jobs:
       - name: Install tool dependencies
         run: pip install -r requirements.txt
 
-      # libsed2 is a build artifact of sys-bio/SED2 and is not on PyPI.  If the repository secret SED2_TOKEN
-      # (a token that can read sys-bio/SED2 releases) is set, the newest wheel is installed and documents are
-      # validated; otherwise document validation is skipped and the job says so.
-      - name: Install libsed2
-        id: libsed2
+      # libsed2 is not on PyPI yet, so install the newest Python wheel attached to a release at
+      # https://github.com/sys-bio/SED2/releases/ .  `gh release list` includes pre-releases (which
+      # `gh release download` without a tag would skip), and sys-bio/SED2 is public, so the
+      # workflow's own token is enough.
+      # - name: Install libsed2 from PyPI
+      #   run: pip install libsed2
+      - name: Install libsed2 from the latest SED2 release
         env:
-          GH_TOKEN: ${{ secrets.SED2_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -z "$GH_TOKEN" ]; then
-            echo "available=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::SED2_TOKEN is not set; SED2 documents will not be validated with libsed2"
-            exit 0
-          fi
+          tag=$(gh release list --repo sys-bio/SED2 --limit 1 --json tagName --jq '.[0].tagName')
+          echo "Installing libsed2 wheel from sys-bio/SED2 release $tag"
           mkdir -p "$RUNNER_TEMP/libsed2"
-          gh release download --repo sys-bio/SED2 --pattern 'libsed2-*.whl' --dir "$RUNNER_TEMP/libsed2"
+          gh release download "$tag" --repo sys-bio/SED2 --pattern 'libsed2-*.whl' --dir "$RUNNER_TEMP/libsed2"
           pip install "$RUNNER_TEMP"/libsed2/libsed2-*.whl
-          echo "available=true" >> "$GITHUB_OUTPUT"
 
       - name: Tests for the tools
         run: python -m pytest
@@ -48,6 +46,6 @@ jobs:
           PYTHONPATH: tools
 
       - name: Validate every case
-        run: python -m sed2suite.validate_suite ${{ steps.libsed2.outputs.available != 'true' && '--no-libsed2' || '' }}
+        run: python -m sed2suite.validate_suite
         env:
           PYTHONPATH: tools
