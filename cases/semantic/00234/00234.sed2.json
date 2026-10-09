@@ -1,0 +1,57 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00234.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "c": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:m.model",
+      "removeElements": [
+        "J1"
+      ]
+    },
+    "s0": {
+      "_type": "explicitODESimulation",
+      "model": "#tasks:m.model",
+      "independentVariable": "urn:sedml:symbol:time",
+      "outputVariables": [
+        "S1",
+        "S2"
+      ],
+      "independentVariableRange": {
+        "_type": "numericRange",
+        "start": 0,
+        "end": 2,
+        "numberOfSteps": 2
+      }
+    },
+    "s1": {
+      "_type": "explicitODESimulation",
+      "model": "#tasks:c.model",
+      "independentVariable": "urn:sedml:symbol:time",
+      "outputVariables": [
+        "S1",
+        "S2"
+      ],
+      "independentVariableRange": {
+        "_type": "numericRange",
+        "start": 0,
+        "end": 2,
+        "numberOfSteps": 2
+      }
+    }
+  },
+  "outputs": {
+    "orig": {
+      "_type": "report",
+      "data": "#tasks:s0"
+    },
+    "cut": {
+      "_type": "report",
+      "data": "#tasks:s1"
+    }
+  }
+}

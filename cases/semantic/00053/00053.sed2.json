@@ -1,0 +1,71 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "pow1": {
+      "_type": "calculation",
+      "math": "2 ^ 10"
+    },
+    "pow2": {
+      "_type": "calculation",
+      "math": "2 ^ 3 ^ 2"
+    },
+    "pow3": {
+      "_type": "calculation",
+      "math": "-2 ^ 2"
+    },
+    "pow4": {
+      "_type": "calculation",
+      "math": "(-2) ^ 2"
+    },
+    "pow5": {
+      "_type": "calculation",
+      "math": "4 ^ 0.5"
+    },
+    "pow6": {
+      "_type": "calculation",
+      "math": "2 ^ -1"
+    },
+    "pow7": {
+      "_type": "calculation",
+      "math": "10 ^ -2"
+    },
+    "pow8": {
+      "_type": "calculation",
+      "math": "5 ^ 0"
+    }
+  },
+  "outputs": {
+    "pow1": {
+      "_type": "report",
+      "data": "#tasks:pow1"
+    },
+    "pow2": {
+      "_type": "report",
+      "data": "#tasks:pow2"
+    },
+    "pow3": {
+      "_type": "report",
+      "data": "#tasks:pow3"
+    },
+    "pow4": {
+      "_type": "report",
+      "data": "#tasks:pow4"
+    },
+    "pow5": {
+      "_type": "report",
+      "data": "#tasks:pow5"
+    },
+    "pow6": {
+      "_type": "report",
+      "data": "#tasks:pow6"
+    },
+    "pow7": {
+      "_type": "report",
+      "data": "#tasks:pow7"
+    },
+    "pow8": {
+      "_type": "report",
+      "data": "#tasks:pow8"
+    }
+  }
+}

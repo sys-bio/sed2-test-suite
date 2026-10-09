@@ -1,0 +1,28 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      1,
+      2,
+      3,
+      3,
+      5,
+      6,
+      7
+    ]
+  },
+  "tasks": {
+    "X_median": {
+      "_type": "aggregationCalculation",
+      "name": "median",
+      "input": "#constants:X",
+      "notes": "Intended function: median (KISAO:0000857).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_median"
+    }
+  }
+}

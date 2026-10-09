@@ -1,0 +1,47 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "w1": {
+      "_type": "calculation",
+      "math": "  1e3  +  2.5E-1 "
+    },
+    "w2": {
+      "_type": "calculation",
+      "math": "0.1 + 0.2"
+    },
+    "w3": {
+      "_type": "calculation",
+      "math": "1E2*3"
+    },
+    "w4": {
+      "_type": "calculation",
+      "math": "2.5\t*\t4"
+    },
+    "w5": {
+      "_type": "calculation",
+      "math": "1.5e+2 / 3"
+    }
+  },
+  "outputs": {
+    "w1": {
+      "_type": "report",
+      "data": "#tasks:w1"
+    },
+    "w2": {
+      "_type": "report",
+      "data": "#tasks:w2"
+    },
+    "w3": {
+      "_type": "report",
+      "data": "#tasks:w3"
+    },
+    "w4": {
+      "_type": "report",
+      "data": "#tasks:w4"
+    },
+    "w5": {
+      "_type": "report",
+      "data": "#tasks:w5"
+    }
+  }
+}

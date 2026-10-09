@@ -1,0 +1,45 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2,
+      3
+    ]
+  },
+  "tasks": {
+    "total": {
+      "_type": "calculation",
+      "math": "sum(#constants:v)"
+    },
+    "scaled": {
+      "_type": "calculation",
+      "math": "#constants:v * 10"
+    },
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "total": "#tasks:total",
+        "one": 1,
+        "x": "#constants:v[2]"
+      }
+    },
+    "mat": {
+      "_type": "createDataBlock",
+      "data": {
+        "base": "#constants:v",
+        "scaled": "#tasks:scaled"
+      }
+    }
+  },
+  "outputs": {
+    "blk": {
+      "_type": "report",
+      "data": "#tasks:blk"
+    },
+    "mat": {
+      "_type": "report",
+      "data": "#tasks:mat"
+    }
+  }
+}

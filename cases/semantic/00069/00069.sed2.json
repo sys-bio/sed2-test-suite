@@ -1,0 +1,167 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "r0": {
+      "_type": "calculation",
+      "math": "piecewise(1, 2 == 2, 0)"
+    },
+    "r1": {
+      "_type": "calculation",
+      "math": "piecewise(1, 2 != 3, 0)"
+    },
+    "r2": {
+      "_type": "calculation",
+      "math": "piecewise(1, 2 <> 3, 0)"
+    },
+    "r3": {
+      "_type": "calculation",
+      "math": "piecewise(1, 2 >< 3, 0)"
+    },
+    "r4": {
+      "_type": "calculation",
+      "math": "piecewise(1, 2 < 3, 0)"
+    },
+    "r5": {
+      "_type": "calculation",
+      "math": "piecewise(1, 3 > 2, 0)"
+    },
+    "r6": {
+      "_type": "calculation",
+      "math": "piecewise(1, 2 <= 2, 0)"
+    },
+    "r7": {
+      "_type": "calculation",
+      "math": "piecewise(1, 3 >= 3, 0)"
+    },
+    "r8": {
+      "_type": "calculation",
+      "math": "piecewise(1, eq(2, 2), 0)"
+    },
+    "r9": {
+      "_type": "calculation",
+      "math": "piecewise(1, neq(2, 3), 0)"
+    },
+    "r10": {
+      "_type": "calculation",
+      "math": "piecewise(1, lt(2, 3), 0)"
+    },
+    "r11": {
+      "_type": "calculation",
+      "math": "piecewise(1, gt(3, 2), 0)"
+    },
+    "r12": {
+      "_type": "calculation",
+      "math": "piecewise(1, leq(2, 2), 0)"
+    },
+    "r13": {
+      "_type": "calculation",
+      "math": "piecewise(1, geq(3, 3), 0)"
+    },
+    "r14": {
+      "_type": "calculation",
+      "math": "piecewise(1, 1 < 2 < 3, 0)"
+    },
+    "r15": {
+      "_type": "calculation",
+      "math": "piecewise(1, 1 < 2 <= 2, 0)"
+    },
+    "r16": {
+      "_type": "calculation",
+      "math": "piecewise(1, 2 == 2 == 2, 0)"
+    },
+    "r17": {
+      "_type": "calculation",
+      "math": "piecewise(1, lt(1, 2, 3), 0)"
+    },
+    "r18": {
+      "_type": "calculation",
+      "math": "piecewise(1, eq(4, 4, 4), 0)"
+    },
+    "r19": {
+      "_type": "calculation",
+      "math": "piecewise(1, geq(3, 3, 1), 0)"
+    }
+  },
+  "outputs": {
+    "r0": {
+      "_type": "report",
+      "data": "#tasks:r0"
+    },
+    "r1": {
+      "_type": "report",
+      "data": "#tasks:r1"
+    },
+    "r2": {
+      "_type": "report",
+      "data": "#tasks:r2"
+    },
+    "r3": {
+      "_type": "report",
+      "data": "#tasks:r3"
+    },
+    "r4": {
+      "_type": "report",
+      "data": "#tasks:r4"
+    },
+    "r5": {
+      "_type": "report",
+      "data": "#tasks:r5"
+    },
+    "r6": {
+      "_type": "report",
+      "data": "#tasks:r6"
+    },
+    "r7": {
+      "_type": "report",
+      "data": "#tasks:r7"
+    },
+    "r8": {
+      "_type": "report",
+      "data": "#tasks:r8"
+    },
+    "r9": {
+      "_type": "report",
+      "data": "#tasks:r9"
+    },
+    "r10": {
+      "_type": "report",
+      "data": "#tasks:r10"
+    },
+    "r11": {
+      "_type": "report",
+      "data": "#tasks:r11"
+    },
+    "r12": {
+      "_type": "report",
+      "data": "#tasks:r12"
+    },
+    "r13": {
+      "_type": "report",
+      "data": "#tasks:r13"
+    },
+    "r14": {
+      "_type": "report",
+      "data": "#tasks:r14"
+    },
+    "r15": {
+      "_type": "report",
+      "data": "#tasks:r15"
+    },
+    "r16": {
+      "_type": "report",
+      "data": "#tasks:r16"
+    },
+    "r17": {
+      "_type": "report",
+      "data": "#tasks:r17"
+    },
+    "r18": {
+      "_type": "report",
+      "data": "#tasks:r18"
+    },
+    "r19": {
+      "_type": "report",
+      "data": "#tasks:r19"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+function f(x)
+  2*x
+end
+model fd
+  S = 3
+  S' = -f(S)
+end

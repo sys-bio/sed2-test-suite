@@ -1,0 +1,8 @@
+model params
+  x = 1
+  x' = r*x
+  r = 0.25
+  z := 2*x + 1
+  y = 5
+  y' = 3
+end

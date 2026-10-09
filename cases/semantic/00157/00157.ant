@@ -1,0 +1,8 @@
+model par
+  -> x; a
+  x -> ; b*x
+  a = 6
+  b = 3
+  x = 1
+  z := 2*x + 1
+end

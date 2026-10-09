@@ -1,0 +1,55 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "eq": {
+      "_type": "calculation",
+      "math": "piecewise(1, notanumber == notanumber, 0)"
+    },
+    "lt": {
+      "_type": "calculation",
+      "math": "piecewise(1, notanumber < 1, 0)"
+    },
+    "gt": {
+      "_type": "calculation",
+      "math": "piecewise(1, notanumber > 1, 0)"
+    },
+    "neq": {
+      "_type": "calculation",
+      "math": "piecewise(1, notanumber != notanumber, 0)"
+    },
+    "inf": {
+      "_type": "calculation",
+      "math": "piecewise(1, infinity > 1e300, 0)"
+    },
+    "ninf": {
+      "_type": "calculation",
+      "math": "piecewise(1, -infinity < -1e300, 0)"
+    }
+  },
+  "outputs": {
+    "eq": {
+      "_type": "report",
+      "data": "#tasks:eq"
+    },
+    "lt": {
+      "_type": "report",
+      "data": "#tasks:lt"
+    },
+    "gt": {
+      "_type": "report",
+      "data": "#tasks:gt"
+    },
+    "neq": {
+      "_type": "report",
+      "data": "#tasks:neq"
+    },
+    "inf": {
+      "_type": "report",
+      "data": "#tasks:inf"
+    },
+    "ninf": {
+      "_type": "report",
+      "data": "#tasks:ninf"
+    }
+  }
+}

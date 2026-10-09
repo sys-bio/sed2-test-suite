@@ -1,0 +1,32 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "x3": [
+      1,
+      2,
+      3
+    ],
+    "y": [
+      1,
+      "nan",
+      "inf"
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:y"
+    },
+    "p": {
+      "_type": "plot2D",
+      "curves": {
+        "c": {
+          "_type": "curve",
+          "curveType": "points",
+          "x": "#constants:x3",
+          "y": "#constants:y"
+        }
+      }
+    }
+  }
+}

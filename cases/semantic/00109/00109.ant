@@ -1,0 +1,7 @@
+model iso
+  A -> B; kf*A - kr*B
+  kf = 1
+  kr = 0.5
+  A = 1
+  B = 0
+end

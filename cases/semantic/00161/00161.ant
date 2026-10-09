@@ -1,0 +1,8 @@
+model jc
+  A -> B; k1*A
+  B -> ; k2*B
+  k1 = 1
+  k2 = 2
+  A = 1
+  B = 0.5
+end

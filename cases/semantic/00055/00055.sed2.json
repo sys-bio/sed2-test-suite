@@ -1,0 +1,79 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "r1": {
+      "_type": "calculation",
+      "math": "7 % 3"
+    },
+    "r2": {
+      "_type": "calculation",
+      "math": "-7 % 3"
+    },
+    "r3": {
+      "_type": "calculation",
+      "math": "7 % -3"
+    },
+    "r4": {
+      "_type": "calculation",
+      "math": "5.5 % 2"
+    },
+    "r5": {
+      "_type": "calculation",
+      "math": "rem(-7, 3)"
+    },
+    "r6": {
+      "_type": "calculation",
+      "math": "rem(7.5, 2)"
+    },
+    "q1": {
+      "_type": "calculation",
+      "math": "quotient(7, 2)"
+    },
+    "q2": {
+      "_type": "calculation",
+      "math": "quotient(10, 5)"
+    },
+    "q3": {
+      "_type": "calculation",
+      "math": "2 + 7 % 4 * 2"
+    }
+  },
+  "outputs": {
+    "r1": {
+      "_type": "report",
+      "data": "#tasks:r1"
+    },
+    "r2": {
+      "_type": "report",
+      "data": "#tasks:r2"
+    },
+    "r3": {
+      "_type": "report",
+      "data": "#tasks:r3"
+    },
+    "r4": {
+      "_type": "report",
+      "data": "#tasks:r4"
+    },
+    "r5": {
+      "_type": "report",
+      "data": "#tasks:r5"
+    },
+    "r6": {
+      "_type": "report",
+      "data": "#tasks:r6"
+    },
+    "q1": {
+      "_type": "report",
+      "data": "#tasks:q1"
+    },
+    "q2": {
+      "_type": "report",
+      "data": "#tasks:q2"
+    },
+    "q3": {
+      "_type": "report",
+      "data": "#tasks:q3"
+    }
+  }
+}

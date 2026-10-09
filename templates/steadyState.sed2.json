@@ -1,0 +1,31 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "model1": {
+      "_type": "modelImport",
+      "location": "three_species_chain.xml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "sim1": {
+      "_type": "steadyState",
+      "workingAlgorithms": [
+        {
+          "algorithm": "KISAO:0000407"
+        }
+      ],
+      "model": "#tasks:model1.model",
+      "independentVariable": "urn:sedml:symbol:time",
+      "outputVariables": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    }
+  },
+  "outputs": {
+    "init_all_values": {
+      "_type": "report",
+      "data": "#tasks:sim1"
+    }
+  }
+}

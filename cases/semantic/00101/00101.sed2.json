@@ -1,0 +1,57 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2,
+      3
+    ],
+    "s": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  "tasks": {
+    "lit": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "n = ",
+        [
+          1,
+          2,
+          3
+        ]
+      ]
+    },
+    "ref": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "x",
+        "#constants:v"
+      ]
+    },
+    "strs": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "<",
+        "#constants:s",
+        ">"
+      ]
+    }
+  },
+  "outputs": {
+    "lit": {
+      "_type": "report",
+      "data": "#tasks:lit"
+    },
+    "ref": {
+      "_type": "report",
+      "data": "#tasks:ref"
+    },
+    "strs": {
+      "_type": "report",
+      "data": "#tasks:strs"
+    }
+  }
+}

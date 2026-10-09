@@ -1,0 +1,16 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "d": {
+      "a": 1,
+      "b": 2,
+      "c": 3
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:d[\"c\"]"
+    }
+  }
+}

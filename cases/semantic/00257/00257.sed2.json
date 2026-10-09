@@ -1,0 +1,17 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "d": {
+      "_type": "csvImport",
+      "separator": "\t",
+      "headers": true,
+      "location": "00257.d.csv"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:d"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00154.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "s": {
+      "_type": "steadyState",
+      "model": "#tasks:m.model",
+      "outputVariables": [
+        "A",
+        "B"
+      ],
+      "workingAlgorithms": [
+        {
+          "algorithm": "KISAO:0000407"
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:s"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "p1": {
+      "_type": "calculation",
+      "math": "2 + 3 * 4"
+    },
+    "p2": {
+      "_type": "calculation",
+      "math": "(2 + 3) * 4"
+    },
+    "p3": {
+      "_type": "calculation",
+      "math": "10 - 4 - 3"
+    },
+    "p4": {
+      "_type": "calculation",
+      "math": "100 / 10 / 5"
+    },
+    "p5": {
+      "_type": "calculation",
+      "math": "2 * 3 / 4"
+    },
+    "p6": {
+      "_type": "calculation",
+      "math": "8 / (2 * 2)"
+    },
+    "p7": {
+      "_type": "calculation",
+      "math": "((1 + 2) * (3 + 4))"
+    }
+  },
+  "outputs": {
+    "p1": {
+      "_type": "report",
+      "data": "#tasks:p1"
+    },
+    "p2": {
+      "_type": "report",
+      "data": "#tasks:p2"
+    },
+    "p3": {
+      "_type": "report",
+      "data": "#tasks:p3"
+    },
+    "p4": {
+      "_type": "report",
+      "data": "#tasks:p4"
+    },
+    "p5": {
+      "_type": "report",
+      "data": "#tasks:p5"
+    },
+    "p6": {
+      "_type": "report",
+      "data": "#tasks:p6"
+    },
+    "p7": {
+      "_type": "report",
+      "data": "#tasks:p7"
+    }
+  }
+}

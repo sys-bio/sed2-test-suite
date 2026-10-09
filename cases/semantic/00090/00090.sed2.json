@@ -1,0 +1,22 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "spec": {
+      "p": 1,
+      "q": 2,
+      "r": 3
+    }
+  },
+  "tasks": {
+    "blk": {
+      "_type": "createDataBlock",
+      "data": "#constants:spec"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:blk"
+    }
+  }
+}

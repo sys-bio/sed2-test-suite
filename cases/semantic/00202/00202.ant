@@ -1,0 +1,8 @@
+model two
+  compartment c = 1
+  species A in c, B in c
+  A = 3
+  B = 0
+  A -> B; k1*A
+  k1 = 0.5
+end

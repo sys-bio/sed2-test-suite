@@ -1,0 +1,23 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "r": {
+      "_type": "numericRange",
+      "values": [
+        1,
+        2,
+        3
+      ]
+    },
+    "c": {
+      "_type": "calculation",
+      "math": "#tasks:r * 10 + 1"
+    }
+  },
+  "outputs": {
+    "c": {
+      "_type": "report",
+      "data": "#tasks:c"
+    }
+  }
+}

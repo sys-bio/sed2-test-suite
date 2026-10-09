@@ -1,0 +1,33 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "vals": [
+      4,
+      5
+    ]
+  },
+  "tasks": {
+    "sc": {
+      "_type": "scatter",
+      "range": {
+        "_type": "range",
+        "values": "#constants:vals"
+      },
+      "subTasks": {
+        "x": {
+          "_type": "calculation",
+          "math": "#tasks:sc.range * #tasks:sc.range"
+        }
+      },
+      "outputVariableMap": {
+        "X": "#tasks:sc:subTasks:x"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:sc"
+    }
+  }
+}

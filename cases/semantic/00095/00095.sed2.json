@@ -1,0 +1,31 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "names": [
+      "x",
+      "y",
+      "z"
+    ]
+  },
+  "tasks": {
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "a": 10,
+        "b": 20,
+        "c": 30
+      }
+    },
+    "rel": {
+      "_type": "relabelData",
+      "input": "#tasks:blk",
+      "labels": "#constants:names"
+    }
+  },
+  "outputs": {
+    "rel": {
+      "_type": "report",
+      "data": "#tasks:rel"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00135.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "s": {
+      "_type": "boundedODESimulation",
+      "model": "#tasks:m.model",
+      "independentVariable": "urn:sedml:symbol:time",
+      "outputVariables": [
+        "S"
+      ],
+      "independentVariableSpan": {
+        "_type": "span",
+        "start": 0,
+        "end": 10
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:s"
+    }
+  }
+}

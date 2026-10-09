@@ -1,0 +1,22 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "vals": [
+      4,
+      9,
+      16
+    ]
+  },
+  "tasks": {
+    "r": {
+      "_type": "range",
+      "values": "#constants:vals"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:r"
+    }
+  }
+}

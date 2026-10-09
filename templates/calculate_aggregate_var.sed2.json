@@ -1,0 +1,26 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "tasks": {
+    "X_var": {
+      "_type": "aggregationCalculation",
+      "name": "variance",
+      "input": "#constants:X",
+      "notes": "Intended function: variance (KISAO:0000859).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_var"
+    }
+  }
+}

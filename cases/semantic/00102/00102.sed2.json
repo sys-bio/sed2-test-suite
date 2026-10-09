@@ -1,0 +1,51 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2,
+      3
+    ],
+    "s": [
+      "a",
+      "b",
+      "c"
+    ],
+    "name": "S"
+  },
+  "tasks": {
+    "pair": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "#constants:name",
+        "#constants:v",
+        "_",
+        "#constants:s"
+      ]
+    },
+    "lits": {
+      "_type": "stringFormation",
+      "concatenate": [
+        [
+          1,
+          2
+        ],
+        "-",
+        [
+          "x",
+          "y"
+        ]
+      ]
+    }
+  },
+  "outputs": {
+    "pair": {
+      "_type": "report",
+      "data": "#tasks:pair"
+    },
+    "lits": {
+      "_type": "report",
+      "data": "#tasks:lits"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+model dimer
+  A + A -> B; k*A^2
+  k = 0.5
+  A = 2
+  B = 0
+end

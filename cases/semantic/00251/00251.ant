@@ -1,0 +1,7 @@
+model dec
+  compartment c = 1
+  species S in c
+  S = 3
+  S -> ; k1*S
+  k1 = 0.5
+end

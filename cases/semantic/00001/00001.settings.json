@@ -5,8 +5,7 @@
     "relative": 0.0001
   },
   "provenance": {
-    "source": "analytical",
-    "notes": "Worked out by hand; see the description."
+    "source": "analytical"
   },
   "backends": [
     "roadrunner",
@@ -14,25 +13,11 @@
     "opencor"
   ],
   "reports": {
-    "scalar": {
-      "dtype": "number",
-      "file": "00001.scalar.csv",
+    "r": {
+      "file": "00001.r.csv",
       "format": "csv",
-      "labels": {
-        "columns": false,
-        "rows": false
-      },
+      "dtype": "number",
       "ndim": 0
-    },
-    "vector": {
-      "dtype": "number",
-      "file": "00001.vector.csv",
-      "format": "csv",
-      "labels": {
-        "columns": false,
-        "rows": false
-      },
-      "ndim": 1
     }
   }
 }

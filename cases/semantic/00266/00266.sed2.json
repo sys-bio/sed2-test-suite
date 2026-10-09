@@ -1,0 +1,29 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00266.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "l": {
+      "_type": "modelElementList",
+      "model": "#tasks:m.model",
+      "includeElements": [
+        "J0"
+      ],
+      "includeTypes": [
+        "species"
+      ],
+      "excludeElements": [
+        "S1"
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:l.strings"
+    }
+  }
+}

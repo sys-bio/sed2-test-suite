@@ -1,0 +1,32 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2
+    ]
+  },
+  "tasks": {
+    "s": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "id",
+        "#constants:v"
+      ]
+    }
+  },
+  "outputs": {
+    "plain": {
+      "_type": "report",
+      "data": "#tasks:s"
+    },
+    "strings": {
+      "_type": "report",
+      "data": "#tasks:s.strings"
+    },
+    "second": {
+      "_type": "report",
+      "data": "#tasks:s.strings[1]"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+model enz
+  E + S -> ES; k1*E*S - k2*ES
+  ES -> E + P; k3*ES
+  k1 = 1
+  k2 = 0.5
+  k3 = 2
+  E = 1
+  S = 5
+  ES = 0.5
+  P = 0.5
+end

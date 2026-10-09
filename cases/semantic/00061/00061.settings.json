@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "sin": {
+      "file": "00061.sin.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "cos": {
+      "file": "00061.cos.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "tan": {
+      "file": "00061.tan.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    }
+  }
+}

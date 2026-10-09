@@ -1,0 +1,19 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "r": {
+      "_type": "parameterRange",
+      "modelElement": "k1",
+      "values": [
+        1,
+        4
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:r"
+    }
+  }
+}

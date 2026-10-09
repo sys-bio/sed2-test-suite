@@ -1,0 +1,55 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "mn1": {
+      "_type": "calculation",
+      "math": "min(3, 1, 2)"
+    },
+    "mx1": {
+      "_type": "calculation",
+      "math": "max(3, 1, 2)"
+    },
+    "mn2": {
+      "_type": "calculation",
+      "math": "min(5)"
+    },
+    "mx2": {
+      "_type": "calculation",
+      "math": "max(-1, -2)"
+    },
+    "mn3": {
+      "_type": "calculation",
+      "math": "min(2.5, 2.25, 9)"
+    },
+    "mx3": {
+      "_type": "calculation",
+      "math": "max(1, 1, 1)"
+    }
+  },
+  "outputs": {
+    "mn1": {
+      "_type": "report",
+      "data": "#tasks:mn1"
+    },
+    "mx1": {
+      "_type": "report",
+      "data": "#tasks:mx1"
+    },
+    "mn2": {
+      "_type": "report",
+      "data": "#tasks:mn2"
+    },
+    "mx2": {
+      "_type": "report",
+      "data": "#tasks:mx2"
+    },
+    "mn3": {
+      "_type": "report",
+      "data": "#tasks:mn3"
+    },
+    "mx3": {
+      "_type": "report",
+      "data": "#tasks:mx3"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00166.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "s": {
+      "_type": "steadyState",
+      "model": "#tasks:m.model",
+      "outputVariables": [
+        "S"
+      ]
+    },
+    "j": {
+      "_type": "jacobianFull",
+      "model": "#tasks:s.model"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:j"
+    }
+  }
+}

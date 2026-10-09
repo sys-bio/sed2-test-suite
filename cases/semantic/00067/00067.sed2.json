@@ -1,0 +1,71 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "pi": {
+      "_type": "calculation",
+      "math": "pi"
+    },
+    "e": {
+      "_type": "calculation",
+      "math": "exponentiale"
+    },
+    "t": {
+      "_type": "calculation",
+      "math": "true"
+    },
+    "f": {
+      "_type": "calculation",
+      "math": "false"
+    },
+    "nan": {
+      "_type": "calculation",
+      "math": "notanumber"
+    },
+    "inf": {
+      "_type": "calculation",
+      "math": "infinity"
+    },
+    "ninf": {
+      "_type": "calculation",
+      "math": "-infinity"
+    },
+    "circ": {
+      "_type": "calculation",
+      "math": "pi * 2 ^ 2"
+    }
+  },
+  "outputs": {
+    "pi": {
+      "_type": "report",
+      "data": "#tasks:pi"
+    },
+    "e": {
+      "_type": "report",
+      "data": "#tasks:e"
+    },
+    "t": {
+      "_type": "report",
+      "data": "#tasks:t"
+    },
+    "f": {
+      "_type": "report",
+      "data": "#tasks:f"
+    },
+    "nan": {
+      "_type": "report",
+      "data": "#tasks:nan"
+    },
+    "inf": {
+      "_type": "report",
+      "data": "#tasks:inf"
+    },
+    "ninf": {
+      "_type": "report",
+      "data": "#tasks:ninf"
+    },
+    "circ": {
+      "_type": "report",
+      "data": "#tasks:circ"
+    }
+  }
+}

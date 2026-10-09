@@ -1,0 +1,27 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00224.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "c": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:m.model",
+      "setValues": {
+        "cell": 5
+      }
+    }
+  },
+  "outputs": {
+    "new": {
+      "_type": "report",
+      "data": "#tasks:c.model['cell']"
+    },
+    "old": {
+      "_type": "report",
+      "data": "#tasks:m.model['cell']"
+    }
+  }
+}

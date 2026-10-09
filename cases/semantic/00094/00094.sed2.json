@@ -1,0 +1,32 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "a": 1,
+        "b": 2,
+        "c": 3
+      }
+    },
+    "rel": {
+      "_type": "relabelData",
+      "input": "#tasks:blk",
+      "labels": [
+        "P",
+        "Q",
+        "R"
+      ]
+    }
+  },
+  "outputs": {
+    "rel": {
+      "_type": "report",
+      "data": "#tasks:rel"
+    },
+    "orig": {
+      "_type": "report",
+      "data": "#tasks:blk"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "x": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "y": [
+      10,
+      20,
+      30,
+      40
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:x"
+    },
+    "p": {
+      "_type": "plot2D",
+      "curves": {
+        "c": {
+          "_type": "curve",
+          "curveType": "bar",
+          "x": "#constants:x",
+          "y": "#constants:y",
+          "yAxis": "right"
+        }
+      },
+      "legend": true,
+      "width": 300,
+      "height": 200,
+      "xAxis": {
+        "scale": "log10",
+        "min": 0.5,
+        "max": 5
+      },
+      "yAxis": {
+        "min": 0
+      },
+      "rightYAxis": {
+        "max": 100
+      }
+    }
+  }
+}

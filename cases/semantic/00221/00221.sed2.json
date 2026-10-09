@@ -1,0 +1,62 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00221.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "outer": {
+      "_type": "scatter",
+      "range": {
+        "_type": "numericRange",
+        "start": 1,
+        "numberOfSteps": 1,
+        "interval": 1
+      },
+      "subTasks": {
+        "ps": {
+          "_type": "parameterScan",
+          "model": "#tasks:m.model",
+          "parameterRanges": [
+            {
+              "_type": "parameterRange",
+              "modelElement": "k1",
+              "values": [
+                0.5,
+                1
+              ]
+            }
+          ],
+          "subTasks": {
+            "s": {
+              "_type": "oneStepODESimulation",
+              "model": "#tasks:outer:subTasks:ps.model",
+              "independentVariable": "urn:sedml:symbol:time",
+              "outputVariables": [
+                "S"
+              ],
+              "independentStep": 2
+            }
+          },
+          "outputVariableMap": {
+            "S": "#tasks:outer:subTasks:ps:subTasks:s['S']"
+          }
+        },
+        "last": {
+          "_type": "calculation",
+          "math": "#tasks:outer:subTasks:ps[1, 'S'] * #tasks:outer.range"
+        }
+      },
+      "outputVariableMap": {
+        "L": "#tasks:outer:subTasks:last"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:outer"
+    }
+  }
+}

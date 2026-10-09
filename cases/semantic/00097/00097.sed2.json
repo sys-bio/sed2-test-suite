@@ -1,0 +1,38 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "n": [
+      1,
+      2,
+      3
+    ]
+  },
+  "tasks": {
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "a": 5,
+        "b": 6,
+        "c": 7
+      }
+    },
+    "lab": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "S",
+        "#constants:n"
+      ]
+    },
+    "rel": {
+      "_type": "relabelData",
+      "input": "#tasks:blk",
+      "labels": "#tasks:lab.strings"
+    }
+  },
+  "outputs": {
+    "rel": {
+      "_type": "report",
+      "data": "#tasks:rel"
+    }
+  }
+}

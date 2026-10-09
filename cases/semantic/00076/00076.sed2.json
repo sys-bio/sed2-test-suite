@@ -1,0 +1,67 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2,
+      3
+    ],
+    "w": [
+      10,
+      20,
+      30
+    ]
+  },
+  "tasks": {
+    "add": {
+      "_type": "calculation",
+      "math": "#constants:v + #constants:w"
+    },
+    "sub": {
+      "_type": "calculation",
+      "math": "#constants:w - #constants:v"
+    },
+    "mul": {
+      "_type": "calculation",
+      "math": "#constants:v * #constants:w"
+    },
+    "div": {
+      "_type": "calculation",
+      "math": "#constants:w / #constants:v"
+    },
+    "pow": {
+      "_type": "calculation",
+      "math": "#constants:v ^ #constants:v"
+    },
+    "expr": {
+      "_type": "calculation",
+      "math": "(#constants:v + 1) * (#constants:w - 5)"
+    }
+  },
+  "outputs": {
+    "add": {
+      "_type": "report",
+      "data": "#tasks:add"
+    },
+    "sub": {
+      "_type": "report",
+      "data": "#tasks:sub"
+    },
+    "mul": {
+      "_type": "report",
+      "data": "#tasks:mul"
+    },
+    "div": {
+      "_type": "report",
+      "data": "#tasks:div"
+    },
+    "pow": {
+      "_type": "report",
+      "data": "#tasks:pow"
+    },
+    "expr": {
+      "_type": "report",
+      "data": "#tasks:expr"
+    }
+  }
+}

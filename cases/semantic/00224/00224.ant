@@ -1,0 +1,6 @@
+model cellm
+  compartment cell = 2
+  species X in cell
+  X = 1
+  k = 2
+end

@@ -1,0 +1,23 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "s": [
+      [
+        "a",
+        "b",
+        "c"
+      ],
+      [
+        "d",
+        "e",
+        "f"
+      ]
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:s"
+    }
+  }
+}

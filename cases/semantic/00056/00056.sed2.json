@@ -1,0 +1,79 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "abs1": {
+      "_type": "calculation",
+      "math": "abs(-3.5)"
+    },
+    "abs2": {
+      "_type": "calculation",
+      "math": "abs(2)"
+    },
+    "abs3": {
+      "_type": "calculation",
+      "math": "abs(0)"
+    },
+    "fl1": {
+      "_type": "calculation",
+      "math": "floor(2.7)"
+    },
+    "fl2": {
+      "_type": "calculation",
+      "math": "floor(-2.7)"
+    },
+    "fl3": {
+      "_type": "calculation",
+      "math": "floor(5)"
+    },
+    "ce1": {
+      "_type": "calculation",
+      "math": "ceiling(2.1)"
+    },
+    "ce2": {
+      "_type": "calculation",
+      "math": "ceiling(-2.7)"
+    },
+    "ce3": {
+      "_type": "calculation",
+      "math": "ceiling(5)"
+    }
+  },
+  "outputs": {
+    "abs1": {
+      "_type": "report",
+      "data": "#tasks:abs1"
+    },
+    "abs2": {
+      "_type": "report",
+      "data": "#tasks:abs2"
+    },
+    "abs3": {
+      "_type": "report",
+      "data": "#tasks:abs3"
+    },
+    "fl1": {
+      "_type": "report",
+      "data": "#tasks:fl1"
+    },
+    "fl2": {
+      "_type": "report",
+      "data": "#tasks:fl2"
+    },
+    "fl3": {
+      "_type": "report",
+      "data": "#tasks:fl3"
+    },
+    "ce1": {
+      "_type": "report",
+      "data": "#tasks:ce1"
+    },
+    "ce2": {
+      "_type": "report",
+      "data": "#tasks:ce2"
+    },
+    "ce3": {
+      "_type": "report",
+      "data": "#tasks:ce3"
+    }
+  }
+}

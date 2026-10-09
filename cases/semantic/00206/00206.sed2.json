@@ -1,0 +1,43 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "lp": {
+      "_type": "loop",
+      "range": {
+        "_type": "numericRange",
+        "start": 0,
+        "numberOfSteps": 5,
+        "interval": 1
+      },
+      "loopVariables": {
+        "a": {
+          "initialValue": 0,
+          "subsequentValues": "#tasks:lp:subTasks:nb"
+        },
+        "b": {
+          "initialValue": 1,
+          "subsequentValues": "#tasks:lp:subTasks:nsum"
+        }
+      },
+      "subTasks": {
+        "nb": {
+          "_type": "calculation",
+          "math": "#tasks:lp:loopVariables:b"
+        },
+        "nsum": {
+          "_type": "calculation",
+          "math": "#tasks:lp:loopVariables:a + #tasks:lp:loopVariables:b"
+        }
+      },
+      "outputVariableMap": {
+        "B": "#tasks:lp:subTasks:nb"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:lp"
+    }
+  }
+}

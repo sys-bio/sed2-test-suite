@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "all": {
+      "file": "00092.all.h5",
+      "format": "h5",
+      "dtype": "number"
+    },
+    "slab": {
+      "file": "00092.slab.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 2
+    },
+    "entry": {
+      "file": "00092.entry.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

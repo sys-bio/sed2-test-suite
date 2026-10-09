@@ -1,0 +1,87 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "e1": {
+      "_type": "calculation",
+      "math": "exp(0)"
+    },
+    "e2": {
+      "_type": "calculation",
+      "math": "exp(1)"
+    },
+    "l1": {
+      "_type": "calculation",
+      "math": "ln(1)"
+    },
+    "l2": {
+      "_type": "calculation",
+      "math": "ln(exponentiale)"
+    },
+    "l3": {
+      "_type": "calculation",
+      "math": "ln(exp(2.5))"
+    },
+    "g1": {
+      "_type": "calculation",
+      "math": "log(1000)"
+    },
+    "g2": {
+      "_type": "calculation",
+      "math": "log(0.01)"
+    },
+    "g3": {
+      "_type": "calculation",
+      "math": "log(2, 8)"
+    },
+    "g4": {
+      "_type": "calculation",
+      "math": "log(10, 100000)"
+    },
+    "g5": {
+      "_type": "calculation",
+      "math": "log(3, 81)"
+    }
+  },
+  "outputs": {
+    "e1": {
+      "_type": "report",
+      "data": "#tasks:e1"
+    },
+    "e2": {
+      "_type": "report",
+      "data": "#tasks:e2"
+    },
+    "l1": {
+      "_type": "report",
+      "data": "#tasks:l1"
+    },
+    "l2": {
+      "_type": "report",
+      "data": "#tasks:l2"
+    },
+    "l3": {
+      "_type": "report",
+      "data": "#tasks:l3"
+    },
+    "g1": {
+      "_type": "report",
+      "data": "#tasks:g1"
+    },
+    "g2": {
+      "_type": "report",
+      "data": "#tasks:g2"
+    },
+    "g3": {
+      "_type": "report",
+      "data": "#tasks:g3"
+    },
+    "g4": {
+      "_type": "report",
+      "data": "#tasks:g4"
+    },
+    "g5": {
+      "_type": "report",
+      "data": "#tasks:g5"
+    }
+  }
+}

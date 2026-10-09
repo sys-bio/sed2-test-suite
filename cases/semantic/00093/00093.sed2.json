@@ -1,0 +1,21 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "only": 4
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:blk"
+    },
+    "one": {
+      "_type": "report",
+      "data": "#tasks:blk['only']"
+    }
+  }
+}

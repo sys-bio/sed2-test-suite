@@ -1,0 +1,6 @@
+model mm
+  S -> ; Vmax*S/(Km + S)
+  Vmax = 2
+  Km = 1
+  S = 3
+end

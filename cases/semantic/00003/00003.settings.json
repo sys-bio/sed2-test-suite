@@ -5,8 +5,7 @@
     "relative": 0.0001
   },
   "provenance": {
-    "source": "analytical",
-    "notes": "Worked out by hand; see the description."
+    "source": "analytical"
   },
   "backends": [
     "roadrunner",
@@ -15,14 +14,10 @@
   ],
   "reports": {
     "r": {
-      "dtype": "number",
       "file": "00003.r.csv",
       "format": "csv",
-      "labels": {
-        "columns": true,
-        "rows": false
-      },
-      "ndim": 2
+      "dtype": "number",
+      "ndim": 1
     }
   }
 }

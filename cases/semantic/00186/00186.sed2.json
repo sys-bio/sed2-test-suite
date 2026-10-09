@@ -1,0 +1,19 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "r": {
+      "_type": "range",
+      "values": [
+        "a",
+        "b",
+        "c"
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:r"
+    }
+  }
+}

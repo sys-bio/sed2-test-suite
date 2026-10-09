@@ -1,0 +1,47 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "add": {
+      "_type": "calculation",
+      "math": "1.5 + 2.25"
+    },
+    "sub": {
+      "_type": "calculation",
+      "math": "10 - 4.5"
+    },
+    "mul": {
+      "_type": "calculation",
+      "math": "3 * 4"
+    },
+    "div": {
+      "_type": "calculation",
+      "math": "7 / 2"
+    },
+    "mixed": {
+      "_type": "calculation",
+      "math": "1 + 2 * 3 - 4 / 2"
+    }
+  },
+  "outputs": {
+    "add": {
+      "_type": "report",
+      "data": "#tasks:add"
+    },
+    "sub": {
+      "_type": "report",
+      "data": "#tasks:sub"
+    },
+    "mul": {
+      "_type": "report",
+      "data": "#tasks:mul"
+    },
+    "div": {
+      "_type": "report",
+      "data": "#tasks:div"
+    },
+    "mixed": {
+      "_type": "report",
+      "data": "#tasks:mixed"
+    }
+  }
+}

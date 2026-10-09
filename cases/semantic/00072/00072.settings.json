@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "and1": {
+      "file": "00072.and1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "or1": {
+      "file": "00072.or1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "not1": {
+      "file": "00072.not1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "and2": {
+      "file": "00072.and2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "or2": {
+      "file": "00072.or2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "xor1": {
+      "file": "00072.xor1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "xor0": {
+      "file": "00072.xor0.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "or0": {
+      "file": "00072.or0.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "imp1": {
+      "file": "00072.imp1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "f": {
+      "file": "00072.f.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "prec1": {
+      "file": "00072.prec1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "sc": {
+      "_type": "scatter",
+      "range": {
+        "_type": "numericRange",
+        "start": 0,
+        "numberOfSteps": 3,
+        "interval": 1
+      },
+      "subTasks": {
+        "x": {
+          "_type": "calculation",
+          "math": "#tasks:sc.range * 2 + #tasks:sc.index * 10"
+        },
+        "y": {
+          "_type": "calculation",
+          "math": "#tasks:sc:subTasks:x + 1"
+        }
+      },
+      "outputVariableMap": {
+        "X": "#tasks:sc:subTasks:x",
+        "Y": "#tasks:sc:subTasks:y"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:sc"
+    }
+  }
+}

@@ -3,17 +3,37 @@
   "entries": [
     {
       "id": "D-001",
-      "test": "00005",
+      "test": "00161",
       "date": "2026-10-08",
       "backends": [
         "copasi",
         "expected"
       ],
-      "symptom": "The first version of case 00005 started with B = 0.  COPASI's Jacobian uses steps relative to each variable's value, so the column for a variable whose value is 0 comes out as 0 (wrong); the translator's COPASI backend refuses with 'COPASI cannot differentiate with respect to B: its value is 0' and the script exits with an error.  roadrunner gave the correct matrix [[-1, 0], [1, -2]].  Checked directly against COPASI 4.48 with the chain model at B = 0: the column for B comes out as [0, 0] for derivation factors from 1e-3 to 1e-12 (dB'/dB should be -2), so it does not depend on the step size.  Not yet checked against COPASI's own steady-state task report, and not yet reported to the COPASI developers.",
+      "symptom": "The first version of case 00161 started with B = 0.  COPASI's Jacobian uses steps relative to each variable's value, so the column for a variable whose value is 0 comes out as 0 (wrong); the translator's COPASI backend refuses with 'COPASI cannot differentiate with respect to B: its value is 0' and the script exits with an error.  roadrunner gave the correct matrix [[-1, 0], [1, -2]].  Checked directly against COPASI 4.48 with the chain model at B = 0: the column for B comes out as [0, 0] for derivation factors from 1e-3 to 1e-12 (dB'/dB should be -2), so it does not depend on the step size.  Not yet checked against COPASI's own steady-state task report, and not yet reported to the COPASI developers.",
       "status": "resolved",
       "diagnosis": "simulator bug",
-      "resolution": "Left the COPASI backend refusing (an error is better than a wrong matrix).  Case 00005 now starts with A = 1, B = 0.5, which tests the same thing (the Jacobian of this linear model does not depend on the state), so that every backend that supports Jacobians can run it.  A zero-valued species in a Jacobian remains unsupported on COPASI.",
+      "resolution": "Left the COPASI backend refusing (an error is better than a wrong matrix).  Case 00161 now starts with A = 1, B = 0.5, which tests the same thing (the Jacobian of this linear model does not depend on the state), so that every backend that supports Jacobians can run it.  A zero-valued species in a Jacobian remains unsupported on COPASI.  (The case was renumbered when the suite's numbers were reassigned in order of addition: it was 00005 and is now 00161.)",
       "reference": "pySED2Translate runtime/backends/copasi_backend.py (_jacobian); docs/deferred.md"
+    },
+    {
+      "id": "D-002",
+      "test": "00123",
+      "date": "2026-10-09",
+      "backends": [
+        "opencor",
+        "expected"
+      ],
+      "report": "r",
+      "symptom": "The model resets S to 5 with an SBML event at time 2.  OpenCOR's result keeps decaying from 10 (S(2.5) = 2.865 instead of 3.894): sbml2cellml 0.4.2 converts the model to CellML without the event and without any warning, and libopencor then runs the converted model.  roadrunner and COPASI apply the event and agree with the closed form.",
+      "size": {
+        "maxAbsolute": 1.03,
+        "maxRelative": 0.264,
+        "where": "row 3 (t = 2.5), column S"
+      },
+      "status": "open",
+      "diagnosis": "simulator bug",
+      "resolution": "The translator's OpenCOR backend now refuses a model that has SBML events: the generated script exits with status 11 and the message 'skip: opencor cannot run the model: ...', which the suite runner reports as a skip.  Case 00123 runs on roadrunner and COPASI only.  To be reported to the sbml2cellml developers (a conversion that drops events should say so).",
+      "reference": "pySED2Translate runtime/backends/opencor_backend.py (_time_course); docs/generated-script-contract.md"
     }
   ]
 }

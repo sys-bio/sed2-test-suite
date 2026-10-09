@@ -1,0 +1,7 @@
+model bim
+  A + B -> C; k*A*B
+  k = 0.5
+  A = 2
+  B = 3
+  C = 1
+end

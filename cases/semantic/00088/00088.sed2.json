@@ -1,0 +1,22 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "k": 7
+  },
+  "tasks": {
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "b": "#constants:k",
+        "a": 2.5,
+        "c": -1
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:blk"
+    }
+  }
+}

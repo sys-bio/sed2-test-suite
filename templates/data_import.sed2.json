@@ -1,0 +1,16 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "data1": {
+      "_type": "dataImport",
+      "location": "experimental_data.csv",
+      "format": "http://purl.org/NET/mediatypes/text/csv"
+    }
+  },
+  "outputs": {
+    "experimental_species_values": {
+      "_type": "report",
+      "data": "#tasks:data1"
+    }
+  }
+}

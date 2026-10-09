@@ -1,0 +1,34 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "a": 1,
+    "b": [
+      2,
+      3
+    ],
+    "c": [
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        7
+      ]
+    ]
+  },
+  "outputs": {
+    "ra": {
+      "_type": "report",
+      "data": "#constants:a"
+    },
+    "rb": {
+      "_type": "report",
+      "data": "#constants:b"
+    },
+    "rc": {
+      "_type": "report",
+      "data": "#constants:c"
+    }
+  }
+}

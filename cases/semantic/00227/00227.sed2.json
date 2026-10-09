@@ -1,0 +1,36 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "newk": 0.25,
+    "base": 3
+  },
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00227.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "calc": {
+      "_type": "calculation",
+      "math": "#constants:base * 4"
+    },
+    "c": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:m.model",
+      "setValues": {
+        "k": "#constants:newk",
+        "j": "#tasks:calc"
+      }
+    }
+  },
+  "outputs": {
+    "k": {
+      "_type": "report",
+      "data": "#tasks:c.model['k']"
+    },
+    "j": {
+      "_type": "report",
+      "data": "#tasks:c.model['j']"
+    }
+  }
+}

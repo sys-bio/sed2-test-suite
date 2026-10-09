@@ -1,0 +1,6 @@
+model logistic
+  x = 1
+  x' = r*x*(1 - x/K)
+  r = 0.5
+  K = 10
+end

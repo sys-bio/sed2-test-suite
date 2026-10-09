@@ -1,0 +1,7 @@
+model one
+  compartment c = 1
+  species S1 in c
+  S1 = 1
+  J0: S1 -> ; k*S1
+  k = 1
+end

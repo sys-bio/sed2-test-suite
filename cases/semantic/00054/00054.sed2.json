@@ -1,0 +1,55 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "neg1": {
+      "_type": "calculation",
+      "math": "-5"
+    },
+    "neg2": {
+      "_type": "calculation",
+      "math": "-(-5)"
+    },
+    "neg3": {
+      "_type": "calculation",
+      "math": "3 - -2"
+    },
+    "neg4": {
+      "_type": "calculation",
+      "math": "-3 * -4"
+    },
+    "plus": {
+      "_type": "calculation",
+      "math": "+4"
+    },
+    "neg5": {
+      "_type": "calculation",
+      "math": "-(2 + 3)"
+    }
+  },
+  "outputs": {
+    "neg1": {
+      "_type": "report",
+      "data": "#tasks:neg1"
+    },
+    "neg2": {
+      "_type": "report",
+      "data": "#tasks:neg2"
+    },
+    "neg3": {
+      "_type": "report",
+      "data": "#tasks:neg3"
+    },
+    "neg4": {
+      "_type": "report",
+      "data": "#tasks:neg4"
+    },
+    "plus": {
+      "_type": "report",
+      "data": "#tasks:plus"
+    },
+    "neg5": {
+      "_type": "report",
+      "data": "#tasks:neg5"
+    }
+  }
+}

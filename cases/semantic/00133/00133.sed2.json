@@ -1,0 +1,26 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00133.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "s": {
+      "_type": "oneStepODESimulation",
+      "model": "#tasks:m.model",
+      "independentVariable": "urn:sedml:symbol:time",
+      "outputVariables": [
+        "x"
+      ],
+      "independentVariableInit": 1,
+      "independentStep": 2
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:s"
+    }
+  }
+}

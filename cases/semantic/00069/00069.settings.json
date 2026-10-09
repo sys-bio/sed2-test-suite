@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "r0": {
+      "file": "00069.r0.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r1": {
+      "file": "00069.r1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r2": {
+      "file": "00069.r2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r3": {
+      "file": "00069.r3.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r4": {
+      "file": "00069.r4.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r5": {
+      "file": "00069.r5.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r6": {
+      "file": "00069.r6.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r7": {
+      "file": "00069.r7.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r8": {
+      "file": "00069.r8.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r9": {
+      "file": "00069.r9.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r10": {
+      "file": "00069.r10.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r11": {
+      "file": "00069.r11.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r12": {
+      "file": "00069.r12.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r13": {
+      "file": "00069.r13.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r14": {
+      "file": "00069.r14.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r15": {
+      "file": "00069.r15.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r16": {
+      "file": "00069.r16.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r17": {
+      "file": "00069.r17.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r18": {
+      "file": "00069.r18.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "r19": {
+      "file": "00069.r19.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

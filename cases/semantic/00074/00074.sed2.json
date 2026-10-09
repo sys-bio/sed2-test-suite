@@ -1,0 +1,63 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "first": {
+      "_type": "calculation",
+      "math": "piecewise(10, 1 > 2, 20, 2 > 1, 30, 3 > 2, 99)"
+    },
+    "other": {
+      "_type": "calculation",
+      "math": "piecewise(10, 1 > 2, 99)"
+    },
+    "noother": {
+      "_type": "calculation",
+      "math": "piecewise(5, 1 < 2)"
+    },
+    "only": {
+      "_type": "calculation",
+      "math": "piecewise(99)"
+    },
+    "none": {
+      "_type": "calculation",
+      "math": "piecewise(5, 1 > 2)"
+    },
+    "calc": {
+      "_type": "calculation",
+      "math": "piecewise(2 * 3, 1 < 2, 0)"
+    },
+    "nested": {
+      "_type": "calculation",
+      "math": "piecewise(piecewise(1, 1 > 2, 2), 1 < 2, 3)"
+    }
+  },
+  "outputs": {
+    "first": {
+      "_type": "report",
+      "data": "#tasks:first"
+    },
+    "other": {
+      "_type": "report",
+      "data": "#tasks:other"
+    },
+    "noother": {
+      "_type": "report",
+      "data": "#tasks:noother"
+    },
+    "only": {
+      "_type": "report",
+      "data": "#tasks:only"
+    },
+    "none": {
+      "_type": "report",
+      "data": "#tasks:none"
+    },
+    "calc": {
+      "_type": "report",
+      "data": "#tasks:calc"
+    },
+    "nested": {
+      "_type": "report",
+      "data": "#tasks:nested"
+    }
+  }
+}

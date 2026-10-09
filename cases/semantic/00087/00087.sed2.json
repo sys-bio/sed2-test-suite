@@ -1,0 +1,30 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2,
+      3
+    ]
+  },
+  "tasks": {
+    "same": {
+      "_type": "calculation",
+      "math": "#constants:v"
+    },
+    "idx": {
+      "_type": "calculation",
+      "math": "#constants:v[2]"
+    }
+  },
+  "outputs": {
+    "same": {
+      "_type": "report",
+      "data": "#tasks:same"
+    },
+    "idx": {
+      "_type": "report",
+      "data": "#tasks:idx"
+    }
+  }
+}

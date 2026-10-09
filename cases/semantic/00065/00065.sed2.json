@@ -1,0 +1,43 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "x": [
+      1,
+      2,
+      1.4142135623730951
+    ],
+    "y": [
+      1,
+      0.5773502691896258,
+      1.7320508075688772
+    ]
+  },
+  "tasks": {
+    "asec": {
+      "_type": "calculation",
+      "math": "arcsec(#constants:x)"
+    },
+    "acsc": {
+      "_type": "calculation",
+      "math": "arccsc(#constants:x)"
+    },
+    "acot": {
+      "_type": "calculation",
+      "math": "arccot(#constants:y)"
+    }
+  },
+  "outputs": {
+    "asec": {
+      "_type": "report",
+      "data": "#tasks:asec"
+    },
+    "acsc": {
+      "_type": "report",
+      "data": "#tasks:acsc"
+    },
+    "acot": {
+      "_type": "report",
+      "data": "#tasks:acot"
+    }
+  }
+}

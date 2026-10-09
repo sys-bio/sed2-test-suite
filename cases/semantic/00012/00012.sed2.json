@@ -1,0 +1,12 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "s": "hello"
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:s"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "ks": [
+      0.25,
+      0.5
+    ]
+  },
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00213.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "ps": {
+      "_type": "parameterScan",
+      "model": "#tasks:m.model",
+      "parameterRanges": [
+        {
+          "_type": "parameterRange",
+          "modelElement": "k1",
+          "values": "#constants:ks"
+        }
+      ],
+      "subTasks": {
+        "s": {
+          "_type": "oneStepODESimulation",
+          "model": "#tasks:ps.model",
+          "independentVariable": "urn:sedml:symbol:time",
+          "outputVariables": [
+            "S"
+          ],
+          "independentStep": 1
+        }
+      },
+      "outputVariableMap": {
+        "S": "#tasks:ps:subTasks:s['S']"
+      }
+    }
+  },
+  "outputs": {
+    "all": {
+      "_type": "report",
+      "data": "#tasks:ps"
+    },
+    "second": {
+      "_type": "report",
+      "data": "#tasks:ps[1, 'S']"
+    },
+    "byvalue": {
+      "_type": "report",
+      "data": "#tasks:ps['0.5']"
+    }
+  }
+}

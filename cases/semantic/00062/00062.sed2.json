@@ -1,0 +1,45 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "f": [
+      0.0,
+      0.16666666666666666,
+      0.25,
+      0.3333333333333333
+    ],
+    "g": [
+      0.16666666666666666,
+      0.25,
+      0.3333333333333333,
+      0.5
+    ]
+  },
+  "tasks": {
+    "sec": {
+      "_type": "calculation",
+      "math": "sec(pi * #constants:f)"
+    },
+    "csc": {
+      "_type": "calculation",
+      "math": "csc(pi * #constants:g)"
+    },
+    "cot": {
+      "_type": "calculation",
+      "math": "cot(pi * #constants:g)"
+    }
+  },
+  "outputs": {
+    "sec": {
+      "_type": "report",
+      "data": "#tasks:sec"
+    },
+    "csc": {
+      "_type": "report",
+      "data": "#tasks:csc"
+    },
+    "cot": {
+      "_type": "report",
+      "data": "#tasks:cot"
+    }
+  }
+}

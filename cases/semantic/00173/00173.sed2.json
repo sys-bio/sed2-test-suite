@@ -1,0 +1,19 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "r": {
+      "_type": "numericRange",
+      "values": [
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:r"
+    }
+  }
+}

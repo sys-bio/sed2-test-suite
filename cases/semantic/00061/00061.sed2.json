@@ -1,0 +1,46 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "f": [
+      0.0,
+      0.16666666666666666,
+      0.25,
+      0.3333333333333333,
+      0.5
+    ],
+    "g": [
+      0.0,
+      0.16666666666666666,
+      0.25,
+      0.3333333333333333
+    ]
+  },
+  "tasks": {
+    "sin": {
+      "_type": "calculation",
+      "math": "sin(pi * #constants:f)"
+    },
+    "cos": {
+      "_type": "calculation",
+      "math": "cos(pi * #constants:f)"
+    },
+    "tan": {
+      "_type": "calculation",
+      "math": "tan(pi * #constants:g)"
+    }
+  },
+  "outputs": {
+    "sin": {
+      "_type": "report",
+      "data": "#tasks:sin"
+    },
+    "cos": {
+      "_type": "report",
+      "data": "#tasks:cos"
+    },
+    "tan": {
+      "_type": "report",
+      "data": "#tasks:tan"
+    }
+  }
+}

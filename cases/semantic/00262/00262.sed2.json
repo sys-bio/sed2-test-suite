@@ -1,0 +1,28 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "d": {
+      "_type": "csvImport",
+      "headers": true,
+      "location": "00262.d.csv"
+    },
+    "total": {
+      "_type": "calculation",
+      "math": "#tasks:d[:, 'x'] + #tasks:d[:, 'y']"
+    },
+    "scaled": {
+      "_type": "calculation",
+      "math": "#tasks:d[:, 'x'] * 2"
+    }
+  },
+  "outputs": {
+    "sum": {
+      "_type": "report",
+      "data": "#tasks:total"
+    },
+    "scaled": {
+      "_type": "report",
+      "data": "#tasks:scaled"
+    }
+  }
+}

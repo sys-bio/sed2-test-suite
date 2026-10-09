@@ -1,0 +1,26 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      1,
+      2,
+      3.5,
+      4,
+      5
+    ]
+  },
+  "tasks": {
+    "X_sem": {
+      "_type": "aggregationCalculation",
+      "name": "standard error",
+      "input": "#constants:X",
+      "notes": "Intended function: standard error (KISAO:0000843).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_sem"
+    }
+  }
+}

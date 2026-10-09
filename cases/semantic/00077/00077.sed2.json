@@ -1,0 +1,45 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "m": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ]
+  },
+  "tasks": {
+    "mul": {
+      "_type": "calculation",
+      "math": "#constants:m * 2"
+    },
+    "rsub": {
+      "_type": "calculation",
+      "math": "1 - #constants:m"
+    },
+    "div": {
+      "_type": "calculation",
+      "math": "12 / #constants:m"
+    }
+  },
+  "outputs": {
+    "mul": {
+      "_type": "report",
+      "data": "#tasks:mul"
+    },
+    "rsub": {
+      "_type": "report",
+      "data": "#tasks:rsub"
+    },
+    "div": {
+      "_type": "report",
+      "data": "#tasks:div"
+    }
+  }
+}

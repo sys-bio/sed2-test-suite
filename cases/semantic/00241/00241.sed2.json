@@ -1,0 +1,49 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "x": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "y": [
+      10,
+      20,
+      30,
+      40
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:x"
+    },
+    "p": {
+      "_type": "plot2D",
+      "curves": {
+        "late": {
+          "_type": "curve",
+          "curveType": "points",
+          "x": "#constants:x",
+          "y": "#constants:y",
+          "order": 2
+        },
+        "first": {
+          "_type": "curve",
+          "curveType": "points",
+          "x": "#constants:x",
+          "y": "#constants:x",
+          "order": 1
+        },
+        "tied": {
+          "_type": "curve",
+          "curveType": "points",
+          "x": "#constants:y",
+          "y": "#constants:y",
+          "order": 1
+        }
+      }
+    }
+  }
+}

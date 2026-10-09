@@ -1,0 +1,26 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      1,
+      2,
+      "NaN",
+      4,
+      -5
+    ]
+  },
+  "tasks": {
+    "X_nanvar": {
+      "_type": "aggregationCalculation",
+      "name": "variance ignoring NaN",
+      "input": "#constants:X",
+      "notes": "Intended function: variance ignoring NaN (KISAO:0000858).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_nanvar"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "sc": {
+      "_type": "scatter",
+      "range": {
+        "_type": "numericRange",
+        "numberOfSteps": 2
+      },
+      "subTasks": {
+        "x": {
+          "_type": "calculation",
+          "math": "#tasks:sc.range * 3"
+        }
+      },
+      "outputVariableMap": {
+        "X": "#tasks:sc:subTasks:x"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:sc"
+    }
+  }
+}

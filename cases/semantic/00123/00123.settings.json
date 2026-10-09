@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi"
+  ],
+  "reports": {
+    "r": {
+      "file": "00123.r.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 2,
+      "labels": {
+        "rows": false,
+        "columns": true
+      }
+    }
+  }
+}

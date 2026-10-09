@@ -17,14 +17,14 @@ A suite that is green because problems were covered up defeats that goal.
   and the case's description what was changed and why, and keep the problematic variant documented.
 * Expected results come from hand calculation or from simulators that agree; `provenance` in `settings.json` says
   which.  Never record results from a simulator as canonical just because it runs; check them.
-* Specification and libsed2 questions belong in the translator repository's `GAPS.md`; the SED2 author makes the
-  changes.
+* Specification and libsed2 questions belong in `SED2/TODO.md` in the SED2 repository (a new section at the end; change
+  nothing else there); the SED2 author makes the changes.
 
 ## Standing rules
 
 * **Do not commit or push** anything, in any repository, unless asked to.  Leave changes in the working tree.
-* **libsed2 and the SED2 specification belong to someone else.**  Report gaps in the translator repository's
-  `GAPS.md`; never work around them here.  Specification changes are made by the user; propose them, do not
+* **libsed2 and the SED2 specification belong to someone else.**  Report gaps in
+  `SED2/TODO.md` (a new section at the end); never work around them here.  Specification changes are made by the user; propose them, do not
   make them.
 * **ASCII only** in files (cases, documents, data, source, documentation).
 * **Case numbers** are assigned in order of addition, from `00001`, and are never reused or renumbered.
@@ -33,4 +33,4 @@ A suite that is green because problems were covered up defeats that goal.
 * **Do not retry a rate-limited site** (for example EBI OLS4 answers 429): note it and carry on without it.
 * **Checks before calling work done:** `python -m pytest`, `python -m sed2suite.validate_suite`,
   `python generate_tags.py --all --check`, `python -m sed2suite.make_inputs --all --check` and
-  `python -m sed2suite.disagreements --check`.
+  `python -m sed2suite.disagreements --check` and `python -m sed2suite.coverage --check`.

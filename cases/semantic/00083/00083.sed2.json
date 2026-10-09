@@ -1,0 +1,84 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "m": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ]
+  },
+  "tasks": {
+    "vec": {
+      "_type": "calculation",
+      "math": "sum(#constants:v)"
+    },
+    "mat": {
+      "_type": "calculation",
+      "math": "sum(#constants:m)"
+    },
+    "part": {
+      "_type": "calculation",
+      "math": "sum(#constants:v[1:4])"
+    },
+    "row": {
+      "_type": "calculation",
+      "math": "sum(#constants:m[1])"
+    },
+    "col": {
+      "_type": "calculation",
+      "math": "sum(#constants:m[0:2, 1])"
+    },
+    "expr": {
+      "_type": "calculation",
+      "math": "sum(#constants:v) / 5"
+    },
+    "sq": {
+      "_type": "calculation",
+      "math": "sum(#constants:v ^ 2)"
+    }
+  },
+  "outputs": {
+    "vec": {
+      "_type": "report",
+      "data": "#tasks:vec"
+    },
+    "mat": {
+      "_type": "report",
+      "data": "#tasks:mat"
+    },
+    "part": {
+      "_type": "report",
+      "data": "#tasks:part"
+    },
+    "row": {
+      "_type": "report",
+      "data": "#tasks:row"
+    },
+    "col": {
+      "_type": "report",
+      "data": "#tasks:col"
+    },
+    "expr": {
+      "_type": "report",
+      "data": "#tasks:expr"
+    },
+    "sq": {
+      "_type": "report",
+      "data": "#tasks:sq"
+    }
+  }
+}

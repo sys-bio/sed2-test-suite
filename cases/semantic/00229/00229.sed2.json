@@ -1,0 +1,32 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00229.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "k": 0.1,
+        "j": 7
+      }
+    },
+    "c": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:m.model",
+      "setValues": "#tasks:blk"
+    }
+  },
+  "outputs": {
+    "k": {
+      "_type": "report",
+      "data": "#tasks:c.model['k']"
+    },
+    "j": {
+      "_type": "report",
+      "data": "#tasks:c.model['j']"
+    }
+  }
+}

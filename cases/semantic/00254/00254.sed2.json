@@ -1,0 +1,24 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "d": {
+      "_type": "csvImport",
+      "headers": true,
+      "location": "00254.d.csv"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:d"
+    },
+    "s1": {
+      "_type": "report",
+      "data": "#tasks:d[:, 'S1']"
+    },
+    "cell": {
+      "_type": "report",
+      "data": "#tasks:d[1, 'S2']"
+    }
+  }
+}

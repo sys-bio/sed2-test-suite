@@ -1,0 +1,36 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00237.sbml",
+      "language": "urn:sedml:language:sbml"
+    }
+  },
+  "outputs": {
+    "Sa": {
+      "_type": "report",
+      "data": "#tasks:m.model['Sa']"
+    },
+    "cell": {
+      "_type": "report",
+      "data": "#tasks:m.model['cell']"
+    },
+    "p": {
+      "_type": "report",
+      "data": "#tasks:m.model['p']"
+    },
+    "q": {
+      "_type": "report",
+      "data": "#tasks:m.model['q']"
+    },
+    "J": {
+      "_type": "report",
+      "data": "#tasks:m.model['J']"
+    },
+    "Sc": {
+      "_type": "report",
+      "data": "#tasks:m.model['Sc']"
+    }
+  }
+}

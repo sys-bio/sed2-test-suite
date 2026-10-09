@@ -1,0 +1,24 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00158.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "s": {
+      "_type": "steadyState",
+      "model": "#tasks:m.model",
+      "outputVariables": [
+        "S",
+        "c"
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:s"
+    }
+  }
+}

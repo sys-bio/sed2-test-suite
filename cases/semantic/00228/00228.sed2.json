@@ -1,0 +1,31 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "chg": {
+      "k": 5,
+      "j": 6
+    }
+  },
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00228.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "c": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:m.model",
+      "setValues": "#constants:chg"
+    }
+  },
+  "outputs": {
+    "k": {
+      "_type": "report",
+      "data": "#tasks:c.model['k']"
+    },
+    "j": {
+      "_type": "report",
+      "data": "#tasks:c.model['j']"
+    }
+  }
+}

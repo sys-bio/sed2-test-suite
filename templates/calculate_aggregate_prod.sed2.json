@@ -1,0 +1,25 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      1,
+      -2,
+      3,
+      4
+    ]
+  },
+  "tasks": {
+    "X_prod": {
+      "_type": "aggregationCalculation",
+      "name": "product",
+      "input": "#constants:X",
+      "notes": "Intended function: product (KISAO:0000847).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_prod"
+    }
+  }
+}

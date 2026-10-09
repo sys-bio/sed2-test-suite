@@ -1,0 +1,29 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "x": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "one": 7
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:one"
+    },
+    "p": {
+      "_type": "plot2D",
+      "curves": {
+        "c": {
+          "_type": "curve",
+          "curveType": "points",
+          "x": "#constants:x",
+          "y": "#constants:one"
+        }
+      }
+    }
+  }
+}

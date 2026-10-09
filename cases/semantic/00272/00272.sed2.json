@@ -1,0 +1,44 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "x": 4
+  },
+  "tasks": {
+    "c": {
+      "_type": "calculation",
+      "math": "#constants:x * 2 + 1",
+      "name": "A name",
+      "description": "A description.",
+      "notes": "Some *markdown* notes.",
+      "annotations": [
+        {
+          "qualifier": "dc:title",
+          "value": "A title"
+        },
+        {
+          "qualifier": "dc:license",
+          "value": "http://creativecommons.org/publicdomain/zero/1.0/"
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:c",
+      "name": "A name",
+      "description": "A description.",
+      "notes": "Some *markdown* notes.",
+      "annotations": [
+        {
+          "qualifier": "dc:title",
+          "value": "A title"
+        },
+        {
+          "qualifier": "dc:license",
+          "value": "http://creativecommons.org/publicdomain/zero/1.0/"
+        }
+      ]
+    }
+  }
+}

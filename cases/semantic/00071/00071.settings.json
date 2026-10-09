@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "and1": {
+      "file": "00071.and1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "or1": {
+      "file": "00071.or1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "not1": {
+      "file": "00071.not1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "and2": {
+      "file": "00071.and2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "or2": {
+      "file": "00071.or2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "xor1": {
+      "file": "00071.xor1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "xor3": {
+      "file": "00071.xor3.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "not2": {
+      "file": "00071.not2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "imp1": {
+      "file": "00071.imp1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "imp2": {
+      "file": "00071.imp2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "and0": {
+      "file": "00071.and0.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "t": {
+      "file": "00071.t.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "prec1": {
+      "file": "00071.prec1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "prec2": {
+      "file": "00071.prec2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "prec3": {
+      "file": "00071.prec3.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

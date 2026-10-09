@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "pow1": {
+      "file": "00053.pow1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "pow2": {
+      "file": "00053.pow2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "pow3": {
+      "file": "00053.pow3.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "pow4": {
+      "file": "00053.pow4.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "pow5": {
+      "file": "00053.pow5.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "pow6": {
+      "file": "00053.pow6.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "pow7": {
+      "file": "00053.pow7.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "pow8": {
+      "file": "00053.pow8.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "model1": {
+      "_type": "modelImport",
+      "location": "three_species_chain.xml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "ids": {
+      "_type": "modelElementList",
+      "model": "#tasks:model1.model",
+      "notes": "Closest valid form: a whole model cannot be reported (its values are not data); this lists its element ids."
+    }
+  },
+  "outputs": {
+    "init_all_values": {
+      "_type": "report",
+      "data": "#tasks:ids.strings"
+    }
+  }
+}

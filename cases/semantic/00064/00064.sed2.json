@@ -1,0 +1,54 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "u": [
+      -1,
+      -0.5,
+      0,
+      0.5,
+      1
+    ],
+    "t": [
+      -1,
+      0,
+      1,
+      1.7320508075688772
+    ]
+  },
+  "tasks": {
+    "as1": {
+      "_type": "calculation",
+      "math": "arcsin(#constants:u)"
+    },
+    "ac1": {
+      "_type": "calculation",
+      "math": "arccos(#constants:u)"
+    },
+    "at1": {
+      "_type": "calculation",
+      "math": "arctan(#constants:t)"
+    },
+    "at2": {
+      "_type": "calculation",
+      "math": "arctan(1) * 4"
+    }
+  },
+  "outputs": {
+    "as1": {
+      "_type": "report",
+      "data": "#tasks:as1"
+    },
+    "ac1": {
+      "_type": "report",
+      "data": "#tasks:ac1"
+    },
+    "at1": {
+      "_type": "report",
+      "data": "#tasks:at1"
+    },
+    "at2": {
+      "_type": "report",
+      "data": "#tasks:at2"
+    }
+  }
+}

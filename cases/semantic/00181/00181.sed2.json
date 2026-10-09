@@ -1,0 +1,17 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "r": {
+      "_type": "numericRange",
+      "end": 10,
+      "numberOfSteps": 4,
+      "interval": 2.5
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:r"
+    }
+  }
+}

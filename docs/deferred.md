@@ -4,7 +4,9 @@ The suite has no test cases for these, because what a correct interpreter must p
 tests when the specification settles each one.
 
 * `ModelChange.addElements` and `ModelChange.replaceElements` (and the order in which the four change attributes
-  of one ModelChange apply): see SED2/TODO.md.  `setValues` and `removeElements` can be tested.
+  of one ModelChange apply): see SED2/TODO.md.  `setValues` and `removeElements` are tested for the clear cases only
+  (a parameter, a compartment, a species in a compartment of volume 1, a reaction); the points that SED2/TODO.md
+  lists as open ("ModelChange for SBML, CsvImport and plots") are not.
 * `AggregationCalculation` and a repeat's `aggregateOutputVariables`: the function cannot be named in the document.
 * `taskParameters` on any task: their meaning is undefined.
 * `DataImport`, and `CsvImport.organization`: no data formats / CsvImport attributes are defined yet.

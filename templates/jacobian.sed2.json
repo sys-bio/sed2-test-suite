@@ -1,0 +1,21 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "model1": {
+      "_type": "modelImport",
+      "location": "three_species_chain.xml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "sim1": {
+      "_type": "jacobianFull",
+      "name": "Jacobian matrix",
+      "model": "#tasks:model1.model"
+    }
+  },
+  "outputs": {
+    "init_all_values": {
+      "_type": "report",
+      "data": "#tasks:sim1"
+    }
+  }
+}

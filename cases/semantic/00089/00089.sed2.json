@@ -1,0 +1,49 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2,
+      3
+    ]
+  },
+  "tasks": {
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "r1": "#constants:v",
+        "r2": [
+          4,
+          5,
+          6
+        ]
+      }
+    }
+  },
+  "outputs": {
+    "all": {
+      "_type": "report",
+      "data": "#tasks:blk"
+    },
+    "row": {
+      "_type": "report",
+      "data": "#tasks:blk['r2']"
+    },
+    "chained": {
+      "_type": "report",
+      "data": "#tasks:blk['r2'][1]"
+    },
+    "comma": {
+      "_type": "report",
+      "data": "#tasks:blk['r2', 1]"
+    },
+    "col": {
+      "_type": "report",
+      "data": "#tasks:blk[:, 2]"
+    },
+    "pos": {
+      "_type": "report",
+      "data": "#tasks:blk[0]"
+    }
+  }
+}

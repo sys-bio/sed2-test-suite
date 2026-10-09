@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "add": {
+      "file": "00075.add.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "sub": {
+      "file": "00075.sub.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "rsub": {
+      "file": "00075.rsub.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "mul": {
+      "file": "00075.mul.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "div": {
+      "file": "00075.div.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "pow": {
+      "file": "00075.pow.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "rpow": {
+      "file": "00075.rpow.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    },
+    "neg": {
+      "file": "00075.neg.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 1
+    }
+  }
+}

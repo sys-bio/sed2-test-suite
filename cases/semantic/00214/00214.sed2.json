@@ -1,0 +1,53 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00214.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "ps": {
+      "_type": "parameterScan",
+      "model": "#tasks:m.model",
+      "parameterRanges": [
+        {
+          "_type": "parameterRange",
+          "modelElement": "a",
+          "values": [
+            1,
+            2
+          ]
+        },
+        {
+          "_type": "parameterRange",
+          "modelElement": "b",
+          "values": [
+            10,
+            20,
+            30
+          ]
+        }
+      ],
+      "subTasks": {
+        "v": {
+          "_type": "calculation",
+          "math": "#tasks:ps.ranges['a'] * 100 + #tasks:ps.ranges['b']"
+        },
+        "idx": {
+          "_type": "calculation",
+          "math": "#tasks:ps.indexes['a'] * 10 + #tasks:ps.indexes['b']"
+        }
+      },
+      "outputVariableMap": {
+        "v": "#tasks:ps:subTasks:v",
+        "idx": "#tasks:ps:subTasks:idx"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:ps"
+    }
+  }
+}

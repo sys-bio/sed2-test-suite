@@ -1,0 +1,27 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      1,
+      2,
+      0,
+      4,
+      5,
+      0.0
+    ]
+  },
+  "tasks": {
+    "X_length": {
+      "_type": "aggregationCalculation",
+      "name": "length",
+      "input": "#constants:X",
+      "notes": "Intended function: length (KISAO:0000855).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_length"
+    }
+  }
+}

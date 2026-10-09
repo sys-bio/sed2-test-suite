@@ -1,0 +1,31 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "inc": [
+      "J0",
+      "S1"
+    ],
+    "exc": [
+      "J0"
+    ]
+  },
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00269.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "l": {
+      "_type": "modelElementList",
+      "model": "#tasks:m.model",
+      "includeElements": "#constants:inc",
+      "excludeElements": "#constants:exc"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:l.strings"
+    }
+  }
+}

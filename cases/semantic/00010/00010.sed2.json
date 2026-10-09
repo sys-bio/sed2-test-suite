@@ -1,0 +1,21 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "m": [
+      [
+        1,
+        "inf"
+      ],
+      [
+        "nan",
+        4
+      ]
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:m"
+    }
+  }
+}

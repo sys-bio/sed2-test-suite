@@ -1,0 +1,78 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2,
+      3
+    ]
+  },
+  "tasks": {
+    "add": {
+      "_type": "calculation",
+      "math": "5 + #constants:v"
+    },
+    "sub": {
+      "_type": "calculation",
+      "math": "#constants:v - 1"
+    },
+    "rsub": {
+      "_type": "calculation",
+      "math": "10 - #constants:v"
+    },
+    "mul": {
+      "_type": "calculation",
+      "math": "2 * #constants:v"
+    },
+    "div": {
+      "_type": "calculation",
+      "math": "12 / #constants:v"
+    },
+    "pow": {
+      "_type": "calculation",
+      "math": "#constants:v ^ 2"
+    },
+    "rpow": {
+      "_type": "calculation",
+      "math": "2 ^ #constants:v"
+    },
+    "neg": {
+      "_type": "calculation",
+      "math": "-#constants:v"
+    }
+  },
+  "outputs": {
+    "add": {
+      "_type": "report",
+      "data": "#tasks:add"
+    },
+    "sub": {
+      "_type": "report",
+      "data": "#tasks:sub"
+    },
+    "rsub": {
+      "_type": "report",
+      "data": "#tasks:rsub"
+    },
+    "mul": {
+      "_type": "report",
+      "data": "#tasks:mul"
+    },
+    "div": {
+      "_type": "report",
+      "data": "#tasks:div"
+    },
+    "pow": {
+      "_type": "report",
+      "data": "#tasks:pow"
+    },
+    "rpow": {
+      "_type": "report",
+      "data": "#tasks:rpow"
+    },
+    "neg": {
+      "_type": "report",
+      "data": "#tasks:neg"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      1,
+      2,
+      3
+    ]
+  },
+  "tasks": {
+    "c1": {
+      "_type": "calculation",
+      "math": "#constants:v * 2"
+    },
+    "c2": {
+      "_type": "calculation",
+      "math": "#tasks:c1 + 1"
+    },
+    "c3": {
+      "_type": "calculation",
+      "math": "sum(#tasks:c2) + #tasks:c1[0]"
+    }
+  },
+  "outputs": {
+    "c1": {
+      "_type": "report",
+      "data": "#tasks:c1"
+    },
+    "c2": {
+      "_type": "report",
+      "data": "#tasks:c2"
+    },
+    "c3": {
+      "_type": "report",
+      "data": "#tasks:c3"
+    }
+  }
+}

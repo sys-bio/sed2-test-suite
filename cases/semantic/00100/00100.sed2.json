@@ -1,0 +1,37 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "yes": true,
+    "no": false
+  },
+  "tasks": {
+    "lit": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "lit:",
+        true,
+        ",",
+        false
+      ]
+    },
+    "ref": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "ref:",
+        "#constants:yes",
+        ",",
+        "#constants:no"
+      ]
+    }
+  },
+  "outputs": {
+    "lit": {
+      "_type": "report",
+      "data": "#tasks:lit"
+    },
+    "ref": {
+      "_type": "report",
+      "data": "#tasks:ref"
+    }
+  }
+}

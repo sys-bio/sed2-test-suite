@@ -1,0 +1,43 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "outer": {
+      "_type": "scatter",
+      "range": {
+        "_type": "numericRange",
+        "start": 1,
+        "numberOfSteps": 2,
+        "interval": 1
+      },
+      "subTasks": {
+        "inner": {
+          "_type": "scatter",
+          "range": {
+            "_type": "numericRange",
+            "start": 10,
+            "numberOfSteps": 1,
+            "interval": 10
+          },
+          "subTasks": {
+            "p": {
+              "_type": "calculation",
+              "math": "#tasks:outer.range * #tasks:outer:subTasks:inner.range"
+            }
+          },
+          "outputVariableMap": {
+            "P": "#tasks:outer:subTasks:inner:subTasks:p"
+          }
+        }
+      },
+      "outputVariableMap": {
+        "I": "#tasks:outer:subTasks:inner"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:outer"
+    }
+  }
+}

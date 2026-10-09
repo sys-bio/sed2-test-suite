@@ -7,7 +7,7 @@ import sys
 import numpy as np
 import pytest
 
-from sed2suite import results_io as rio, tags, validate_suite as vs
+from sed2suite import author, results_io as rio, tags, validate_suite as vs
 
 VOCAB = tags.load_vocabulary()
 TOOLS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tools")
@@ -27,7 +27,7 @@ SETTINGS = {
 
 
 def make_case(root, doc=None, settings=None, semantic=("analytical", "constants-only"), number="00001",
-              default_csv=True):
+              default_csv=True, signoff=True):
     d = root / number
     d.mkdir()
     doc = copy.deepcopy(doc or DOC)
@@ -36,6 +36,10 @@ def make_case(root, doc=None, settings=None, semantic=("analytical", "constants-
     (d / f"{number}.settings.json").write_text(json.dumps(settings, indent=2))
     if default_csv:
         rio.write_csv(str(d / f"{number}.rep1.csv"), rio.AnnotatedData(np.array([10.0, 20.0, 30.0])))
+    if signoff:
+        text = author.description_text(number, "A test.", "Worked out by hand: the array is 10, 20, 30.", "", "analytical", "")
+        text = text.replace(author.BACKENDS_LINE, "- Backends: " + ", ".join(settings["backends"]) + " (agree; admitted).")
+        (d / f"{number}.description.md").write_text(text, encoding="utf-8", newline="\n")
     tags.process_case(str(d / f"{number}.sed2.json"), VOCAB, list(semantic))
     return d
 
@@ -215,3 +219,30 @@ def test_cli(tmp_path):
     assert run(str(d), "--no-libsed2").returncode == 1
     assert run("nothing-here").returncode == 2
     assert run("--no-libsed2").returncode == 0  # the real suite as it stands
+
+
+# --------------------------------------------------------------------------- the sign-off in the description
+
+def test_signoff_is_required_and_checked(tmp_path):
+    d = make_case(tmp_path, signoff=False)
+    m = messages(vs.validate_case(str(d), VOCAB, use_libsed2=False))
+    assert "Expected results" in m and "Sign-off" in m
+
+
+def test_signoff_pieces(tmp_path):
+    good = author.description_text("00001", "What.", "By hand.", "", "analytical", "").replace(
+        author.BACKENDS_LINE, "- Backends: roadrunner, copasi, opencor (agree)")
+    settings = {"provenance": {"source": "analytical"}, "backends": ["roadrunner", "copasi", "opencor"]}
+    assert vs.signoff_problems(good, settings) == []
+    # no derivation
+    assert any("Expected results" in p for p in vs.signoff_problems(good.replace("## Expected results\n\nBy hand.\n", ""), settings))
+    # not admitted
+    notyet = good.replace("- Backends: roadrunner, copasi, opencor (agree)", author.BACKENDS_LINE)
+    assert any("not been admitted" in p for p in vs.signoff_problems(notyet, settings))
+    # a backend in settings.json that the sign-off does not mention
+    assert any("'x'" in p for p in vs.signoff_problems(good, dict(settings, backends=["x"])))
+    # provenance and the sign-off must agree
+    sim = {"provenance": {"source": "simulation"}, "backends": ["roadrunner"]}
+    assert any("simulators" in p for p in vs.signoff_problems(good, sim))
+    # missing lines
+    assert any("Tolerances" in p for p in vs.signoff_problems(good.replace("- Tolerances:", "- Tol:"), settings))

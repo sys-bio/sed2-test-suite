@@ -53,7 +53,10 @@ are not recorded or compared.  Number and special-value rules are those of repor
 * One group per surface, named for the surface id.
 * Datasets `x`, `y` and `z`, each with the shape its reference resolves to.
 * Group attributes: `surfaceType` (string) and `index` (position in the `surfaces` dictionary).
-* Surfaces appear in ascending `order`, ties broken by position.
+* Surfaces appear in ascending `order`, ties broken by position.  HDF5 groups have no order of their own, so the file is
+  created with creation order tracked (h5py: `track_order=True`) and the groups are created in that order; a reader
+  lists them in creation order.  The comparison checks the list of surface ids in that order, so an interpreter that
+  ignores `order` fails.
 
 ### PNG
 
@@ -166,7 +169,7 @@ an entry that is no longer open says what was done).  `--list [--open]` prints o
 | `status` | `open`, `resolved` or `wontfix`. |
 | `diagnosis` | `undiagnosed` (still being looked at), `solver setting`, `translator bug`, `simulator bug` or `spec ambiguity`. |
 | `resolution` | What was done, or what is being waited for.  Required once the status is not `open`. |
-| `reference` | Optional pointer: a commit, issue, GAPS.md item or specification section. |
+| `reference` | Optional pointer: a commit, issue, SED2/TODO.md item or specification section. |
 
 A mismatch only becomes an entry when the cause is not obvious from the output.  The suite runner
 (`pysed2translate.suite_runner --log-draft`) prints draft entries for the disagreements it finds; they are added to

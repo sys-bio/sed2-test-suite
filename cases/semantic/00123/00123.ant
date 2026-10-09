@@ -1,0 +1,6 @@
+model reset
+  S = 10
+  S -> ; k*S
+  k = 0.5
+  at (time > 2): S = 5
+end

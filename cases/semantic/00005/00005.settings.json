@@ -5,23 +5,18 @@
     "relative": 0.0001
   },
   "provenance": {
-    "source": "analytical",
-    "notes": "Worked out by hand; see the description."
+    "source": "analytical"
   },
   "backends": [
     "roadrunner",
-    "copasi"
+    "copasi",
+    "opencor"
   ],
   "reports": {
     "r": {
-      "dtype": "number",
-      "file": "00005.r.csv",
-      "format": "csv",
-      "labels": {
-        "columns": true,
-        "rows": true
-      },
-      "ndim": 2
+      "file": "00005.r.h5",
+      "format": "h5",
+      "dtype": "number"
     }
   }
 }

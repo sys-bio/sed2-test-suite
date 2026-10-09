@@ -1,0 +1,25 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "sep": ";",
+    "hdr": true,
+    "n": 2,
+    "nc": 2
+  },
+  "tasks": {
+    "d": {
+      "_type": "csvImport",
+      "separator": "#constants:sep",
+      "headers": "#constants:hdr",
+      "nrows": "#constants:n",
+      "ncols": "#constants:nc",
+      "location": "00261.d.csv"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:d"
+    }
+  }
+}

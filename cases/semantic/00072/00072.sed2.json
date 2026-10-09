@@ -1,0 +1,95 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "and1": {
+      "_type": "calculation",
+      "math": "piecewise(1, 1 < 2 && 2 > 3, 0)"
+    },
+    "or1": {
+      "_type": "calculation",
+      "math": "piecewise(1, 1 > 2 || 2 > 3, 0)"
+    },
+    "not1": {
+      "_type": "calculation",
+      "math": "piecewise(1, !(1 < 2), 0)"
+    },
+    "and2": {
+      "_type": "calculation",
+      "math": "piecewise(1, and(1 < 2, 2 < 3, 3 > 4), 0)"
+    },
+    "or2": {
+      "_type": "calculation",
+      "math": "piecewise(1, or(1 > 2, 2 > 3, 3 > 4), 0)"
+    },
+    "xor1": {
+      "_type": "calculation",
+      "math": "piecewise(1, xor(1 < 2, 1 < 3), 0)"
+    },
+    "xor0": {
+      "_type": "calculation",
+      "math": "piecewise(1, xor(), 0)"
+    },
+    "or0": {
+      "_type": "calculation",
+      "math": "piecewise(1, or(), 0)"
+    },
+    "imp1": {
+      "_type": "calculation",
+      "math": "piecewise(1, implies(1 < 2, 2 > 3), 0)"
+    },
+    "f": {
+      "_type": "calculation",
+      "math": "piecewise(1, false, 0)"
+    },
+    "prec1": {
+      "_type": "calculation",
+      "math": "piecewise(1, 1 == 1 || 1 == 2 && 1 == 2, 0)"
+    }
+  },
+  "outputs": {
+    "and1": {
+      "_type": "report",
+      "data": "#tasks:and1"
+    },
+    "or1": {
+      "_type": "report",
+      "data": "#tasks:or1"
+    },
+    "not1": {
+      "_type": "report",
+      "data": "#tasks:not1"
+    },
+    "and2": {
+      "_type": "report",
+      "data": "#tasks:and2"
+    },
+    "or2": {
+      "_type": "report",
+      "data": "#tasks:or2"
+    },
+    "xor1": {
+      "_type": "report",
+      "data": "#tasks:xor1"
+    },
+    "xor0": {
+      "_type": "report",
+      "data": "#tasks:xor0"
+    },
+    "or0": {
+      "_type": "report",
+      "data": "#tasks:or0"
+    },
+    "imp1": {
+      "_type": "report",
+      "data": "#tasks:imp1"
+    },
+    "f": {
+      "_type": "report",
+      "data": "#tasks:f"
+    },
+    "prec1": {
+      "_type": "report",
+      "data": "#tasks:prec1"
+    }
+  }
+}

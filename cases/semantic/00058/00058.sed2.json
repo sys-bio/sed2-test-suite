@@ -1,0 +1,71 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "sq1": {
+      "_type": "calculation",
+      "math": "root(16)"
+    },
+    "sq2": {
+      "_type": "calculation",
+      "math": "root(2, 9)"
+    },
+    "cu": {
+      "_type": "calculation",
+      "math": "root(3, 27)"
+    },
+    "r4": {
+      "_type": "calculation",
+      "math": "root(4, 16)"
+    },
+    "f0": {
+      "_type": "calculation",
+      "math": "factorial(0)"
+    },
+    "f1": {
+      "_type": "calculation",
+      "math": "factorial(1)"
+    },
+    "f5": {
+      "_type": "calculation",
+      "math": "factorial(5)"
+    },
+    "f10": {
+      "_type": "calculation",
+      "math": "factorial(10)"
+    }
+  },
+  "outputs": {
+    "sq1": {
+      "_type": "report",
+      "data": "#tasks:sq1"
+    },
+    "sq2": {
+      "_type": "report",
+      "data": "#tasks:sq2"
+    },
+    "cu": {
+      "_type": "report",
+      "data": "#tasks:cu"
+    },
+    "r4": {
+      "_type": "report",
+      "data": "#tasks:r4"
+    },
+    "f0": {
+      "_type": "report",
+      "data": "#tasks:f0"
+    },
+    "f1": {
+      "_type": "report",
+      "data": "#tasks:f1"
+    },
+    "f5": {
+      "_type": "report",
+      "data": "#tasks:f5"
+    },
+    "f10": {
+      "_type": "report",
+      "data": "#tasks:f10"
+    }
+  }
+}

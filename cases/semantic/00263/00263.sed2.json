@@ -1,0 +1,27 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "d": {
+      "_type": "csvImport",
+      "location": "00263.d.csv",
+      "headers": true
+    }
+  },
+  "outputs": {
+    "p": {
+      "_type": "plot2D",
+      "curves": {
+        "c": {
+          "_type": "curve",
+          "curveType": "points",
+          "x": "#tasks:d[:, 'time']",
+          "y": "#tasks:d[:, 'v']"
+        }
+      }
+    },
+    "r": {
+      "_type": "report",
+      "data": "#tasks:d"
+    }
+  }
+}

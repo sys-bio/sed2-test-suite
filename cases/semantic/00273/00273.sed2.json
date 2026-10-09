@@ -1,0 +1,55 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "title": "A referenced title"
+  },
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00273.sbml",
+      "language": "urn:sedml:language:sbml",
+      "name": "A name",
+      "description": "A description.",
+      "notes": "Some *markdown* notes.",
+      "annotations": [
+        {
+          "qualifier": "dc:title",
+          "value": "#constants:title"
+        }
+      ]
+    },
+    "s": {
+      "_type": "oneStepODESimulation",
+      "model": "#tasks:m.model",
+      "independentVariable": "urn:sedml:symbol:time",
+      "outputVariables": [
+        "S"
+      ],
+      "independentStep": 2,
+      "name": "A name",
+      "description": "A description.",
+      "notes": "Some *markdown* notes.",
+      "annotations": [
+        {
+          "qualifier": "dc:title",
+          "value": "#constants:title"
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:s['S']",
+      "name": "A name",
+      "description": "A description.",
+      "notes": "Some *markdown* notes.",
+      "annotations": [
+        {
+          "qualifier": "dc:title",
+          "value": "#constants:title"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00161.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "j": {
+      "_type": "jacobianFull",
+      "model": "#tasks:m.model"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:j"
+    },
+    "ba": {
+      "_type": "report",
+      "data": "#tasks:j['B', 'A']"
+    },
+    "row": {
+      "_type": "report",
+      "data": "#tasks:j['B']"
+    }
+  }
+}

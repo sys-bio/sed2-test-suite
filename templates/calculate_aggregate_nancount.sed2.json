@@ -1,0 +1,28 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      0,
+      1,
+      "NaN",
+      true,
+      0,
+      "NaN",
+      3
+    ]
+  },
+  "tasks": {
+    "X_nancount": {
+      "_type": "aggregationCalculation",
+      "name": "count ignoring NaN",
+      "input": "#constants:X",
+      "notes": "Intended function: count ignoring NaN (KISAO:0000852).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_nancount"
+    }
+  }
+}

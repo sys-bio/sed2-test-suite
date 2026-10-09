@@ -1,0 +1,6 @@
+model ia
+  S = 4
+  S -> ; k*S
+  k = 2*kb
+  kb = 3
+end

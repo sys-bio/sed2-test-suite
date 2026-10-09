@@ -1,0 +1,99 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "ode_interval": 20
+  },
+  "tasks": {
+    "ODEmodel": {
+      "_type": "modelImport",
+      "location": "monod_CRM.xml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "FBAmodel": {
+      "_type": "modelImport",
+      "location": "ecoli_GSM.xml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "ODE_species": {
+      "_type": "modelElementList",
+      "model": "#tasks:ODEmodel.model",
+      "includeTypes": [
+        "species"
+      ]
+    },
+    "FBA_rxns": {
+      "_type": "modelElementList",
+      "model": "#tasks:FBAmodel.model",
+      "includeTypes": [
+        "reactions"
+      ]
+    },
+    "repeat": {
+      "_type": "loop",
+      "range": {
+        "_type": "numericRange",
+        "numberOfSteps": 100
+      },
+      "loopVariables": {
+        "ODE_model": {
+          "initialValue": "#tasks:ODEmodel.model",
+          "subsequentValues": "#tasks:repeat:subTasks:new_ode.model"
+        },
+        "FBA_model": {
+          "initialValue": "#tasks:FBAmodel.model",
+          "subsequentValues": "#tasks:repeat:subTasks:fbasim.model"
+        }
+      },
+      "subTasks": {
+        "odesim": {
+          "_type": "explicitODESimulation",
+          "workingAlgorithms": [
+            {
+              "algorithm": "KISAO:0000694"
+            }
+          ],
+          "model": "#tasks:repeat:loopVariables:ODE_model",
+          "independentVariable": "urn:sedml:symbol:time",
+          "independentVariableInit": 0,
+          "independentVariableRange": {
+            "_type": "numericRange",
+            "start": 0,
+            "end": "#constants:ode_interval",
+            "numberOfSteps": 100,
+            "scale": "linear"
+          },
+          "outputVariables": "#tasks:ODE_species.strings"
+        },
+        "new_fba": {
+          "_type": "modelChange",
+          "inputModel": "#tasks:repeat:loopVariables:FBA_model",
+          "setValues": "#tasks:repeat:subTasks:odesim[-1]"
+        },
+        "fbasim": {
+          "_type": "fluxBalanceAnalysis",
+          "workingAlgorithms": [
+            {
+              "algorithm": "KISAO:0000437"
+            }
+          ],
+          "model": "#tasks:repeat:subTasks:new_fba.model",
+          "outputVariables": "#tasks:FBA_rxns.strings"
+        },
+        "new_ode": {
+          "_type": "modelChange",
+          "inputModel": "#tasks:repeat:subTasks:odesim.model",
+          "setValues": "#tasks:repeat:subTasks:fbasim"
+        }
+      },
+      "outputVariableMap": {
+        "species_trace": "#tasks:repeat:subTasks:odesim"
+      }
+    }
+  },
+  "outputs": {
+    "cosim_output": {
+      "_type": "report",
+      "data": "#tasks:repeat['species_trace']"
+    }
+  }
+}

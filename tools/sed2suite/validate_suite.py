@@ -139,6 +139,41 @@ CHECKED_SEMANTIC = {"constants-only", "analytical", "string-data", "multi-dimens
 
 # --------------------------------------------------------------------------- one case
 
+
+def signoff_problems(text: str, settings: dict) -> list:
+    """What is missing from a description's sign-off (docs/PROMOTION.md): how the expected results were worked out, where
+    they came from, the tolerances, and the backends that agree with them."""
+    out = []
+    m = re.search(r"^## Expected results[ \t]*\n(.*?)(?=^## |^<!--|\Z)", text, re.S | re.M)
+    if not m or not m.group(1).strip():
+        out.append("the description has no 'Expected results' section saying how the expected results were worked out")
+    sm = re.search(r"^## Sign-off[ \t]*\n(.*?)(?=^<!--|\Z)", text, re.S | re.M)
+    if not sm:
+        return out + ["the description has no 'Sign-off' section"]
+    lines = {}
+    for line in sm.group(1).splitlines():
+        for key in ("Expected results", "Tolerances", "Backends"):
+            if line.startswith(f"- {key}:"):
+                lines[key] = line[len(key) + 3:].strip()
+    for key in ("Expected results", "Tolerances", "Backends"):
+        if not lines.get(key):
+            out.append(f"the sign-off has no '- {key}:' line")
+    source = settings.get("provenance", {}).get("source")
+    got = lines.get("Expected results", "")
+    if got and source == "analytical" and "derived by hand" not in got:
+        out.append("the provenance is analytical but the sign-off does not say the results were derived by hand")
+    if got and source == "simulation" and "from simulators" not in got:
+        out.append("the provenance is simulation but the sign-off does not name the simulators")
+    backends = lines.get("Backends", "")
+    if backends:
+        if "not yet admitted" in backends:
+            out.append("the sign-off says the case has not been admitted to any backend")
+        for b in settings.get("backends", []):
+            if b not in backends:
+                out.append(f"the sign-off does not list backend {b!r}, which settings.json records")
+    return out
+
+
 def validate_case(case_dir: str, vocab: dict, use_libsed2: bool = True) -> list:
     case_dir = os.path.abspath(case_dir)
     cid = os.path.basename(case_dir)
@@ -202,6 +237,12 @@ def validate_case(case_dir: str, vocab: dict, use_libsed2: bool = True) -> list:
     for pid, spec in settings.get("plots", {}).items():
         if spec["type"] != plots[pid]:
             err(f"settings: plot {pid!r} is {spec['type']} but the document says {plots[pid]}")
+
+    # sign-off in the description
+    if os.path.isfile(desc):
+        with open(desc, "r", encoding="utf-8") as f:
+            for m in signoff_problems(f.read(), settings):
+                err(m)
 
     # result files: readable and consistent with settings
     for rid, spec in settings.get("reports", {}).items():

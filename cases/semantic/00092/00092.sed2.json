@@ -1,0 +1,52 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "m": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ],
+    "n": [
+      [
+        10,
+        20,
+        30
+      ],
+      [
+        40,
+        50,
+        60
+      ]
+    ]
+  },
+  "tasks": {
+    "blk": {
+      "_type": "createDataBlock",
+      "data": {
+        "m": "#constants:m",
+        "n": "#constants:n"
+      }
+    }
+  },
+  "outputs": {
+    "all": {
+      "_type": "report",
+      "data": "#tasks:blk"
+    },
+    "slab": {
+      "_type": "report",
+      "data": "#tasks:blk['n']"
+    },
+    "entry": {
+      "_type": "report",
+      "data": "#tasks:blk['n', 1, 2]"
+    }
+  }
+}

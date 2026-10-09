@@ -1,0 +1,19 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      "NaN",
+      "NAN",
+      "Inf",
+      "INF",
+      "-Inf",
+      "-INF"
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:v"
+    }
+  }
+}

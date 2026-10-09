@@ -1,0 +1,36 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m1": {
+      "_type": "modelImport",
+      "location": "00230.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "m2": {
+      "_type": "modelImport",
+      "location": "00230.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "c": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:m1.model",
+      "setValues": {
+        "k": 9
+      }
+    }
+  },
+  "outputs": {
+    "changed": {
+      "_type": "report",
+      "data": "#tasks:c.model['k']"
+    },
+    "m1": {
+      "_type": "report",
+      "data": "#tasks:m1.model['k']"
+    },
+    "m2": {
+      "_type": "report",
+      "data": "#tasks:m2.model['k']"
+    }
+  }
+}

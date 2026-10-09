@@ -1,0 +1,26 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      1,
+      2,
+      -3,
+      4,
+      5
+    ]
+  },
+  "tasks": {
+    "X_sum": {
+      "_type": "aggregationCalculation",
+      "name": "sum",
+      "input": "#constants:X",
+      "notes": "Intended function: sum (KISAO:0000845).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_sum"
+    }
+  }
+}

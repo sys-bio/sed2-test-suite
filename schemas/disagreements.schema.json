@@ -49,7 +49,7 @@
           "description": "What was done, or what is waiting; required to be non-empty once status is not 'open'.",
           "type": "string"
         },
-        "reference": { "description": "Where to look: issue, commit, GAPS.md item, spec section.", "type": "string" }
+        "reference": { "description": "Where to look: issue, commit, SED2/TODO.md item, spec section.", "type": "string" }
       }
     }
   }

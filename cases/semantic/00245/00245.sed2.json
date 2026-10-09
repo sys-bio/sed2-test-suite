@@ -1,0 +1,32 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "cats": [
+      "a",
+      "b",
+      "c"
+    ],
+    "y3": [
+      1,
+      2,
+      3
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:cats"
+    },
+    "p": {
+      "_type": "plot2D",
+      "curves": {
+        "c": {
+          "_type": "curve",
+          "curveType": "bar",
+          "x": "#constants:cats",
+          "y": "#constants:y3"
+        }
+      }
+    }
+  }
+}

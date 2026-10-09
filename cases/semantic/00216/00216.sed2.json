@@ -1,0 +1,51 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00216.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "ps": {
+      "_type": "parameterScan",
+      "model": "#tasks:m.model",
+      "parameterRanges": [
+        {
+          "_type": "parameterRange",
+          "modelElement": "v",
+          "values": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "_type": "parameterRange",
+          "modelElement": "k1",
+          "values": [
+            1,
+            2
+          ]
+        }
+      ],
+      "subTasks": {
+        "s": {
+          "_type": "steadyState",
+          "model": "#tasks:ps.model",
+          "outputVariables": [
+            "A"
+          ]
+        }
+      },
+      "outputVariableMap": {
+        "A": "#tasks:ps:subTasks:s['A']"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:ps"
+    }
+  }
+}

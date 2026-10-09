@@ -1,0 +1,68 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "v": [
+      -1.5,
+      0.0,
+      2.0
+    ],
+    "sq": [
+      [
+        1,
+        4
+      ],
+      [
+        9,
+        16
+      ]
+    ],
+    "z": [
+      0,
+      0
+    ]
+  },
+  "tasks": {
+    "abs": {
+      "_type": "calculation",
+      "math": "abs(#constants:v)"
+    },
+    "floor": {
+      "_type": "calculation",
+      "math": "floor(#constants:v)"
+    },
+    "ceil": {
+      "_type": "calculation",
+      "math": "ceiling(#constants:v)"
+    },
+    "root": {
+      "_type": "calculation",
+      "math": "root(#constants:sq)"
+    },
+    "exp": {
+      "_type": "calculation",
+      "math": "exp(#constants:z)"
+    }
+  },
+  "outputs": {
+    "abs": {
+      "_type": "report",
+      "data": "#tasks:abs"
+    },
+    "floor": {
+      "_type": "report",
+      "data": "#tasks:floor"
+    },
+    "ceil": {
+      "_type": "report",
+      "data": "#tasks:ceil"
+    },
+    "root": {
+      "_type": "report",
+      "data": "#tasks:root"
+    },
+    "exp": {
+      "_type": "report",
+      "data": "#tasks:exp"
+    }
+  }
+}

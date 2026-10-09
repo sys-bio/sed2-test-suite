@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" level="3" version="2">
+  <model metaid="osc" id="osc">
+    <listOfParameters>
+      <parameter id="x" value="1" constant="false"/>
+      <parameter id="v" value="0" constant="false"/>
+      <parameter id="w" value="2" constant="true"/>
+    </listOfParameters>
+    <listOfRules>
+      <rateRule variable="x">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> v </ci>
+        </math>
+      </rateRule>
+      <rateRule variable="v">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <minus/>
+              <apply>
+                <power/>
+                <ci> w </ci>
+                <cn type="integer"> 2 </cn>
+              </apply>
+            </apply>
+            <ci> x </ci>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+  </model>
+</sbml>

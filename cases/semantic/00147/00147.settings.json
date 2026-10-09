@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 0.0001,
+    "relative": 0.001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "opencor"
+  ],
+  "reports": {
+    "r": {
+      "file": "00147.r.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 2,
+      "labels": {
+        "rows": false,
+        "columns": true
+      }
+    }
+  }
+}

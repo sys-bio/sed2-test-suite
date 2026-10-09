@@ -1,0 +1,22 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "lo": 1.0,
+    "h": 0.5,
+    "n": 3
+  },
+  "tasks": {
+    "r": {
+      "_type": "numericRange",
+      "start": "#constants:lo",
+      "interval": "#constants:h",
+      "numberOfSteps": "#constants:n"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:r"
+    }
+  }
+}

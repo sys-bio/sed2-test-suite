@@ -1,0 +1,52 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "x": [
+      1,
+      2
+    ],
+    "y": [
+      3,
+      4
+    ],
+    "e1": [
+      0.1,
+      0.1
+    ],
+    "e2": [
+      0.2,
+      0.2
+    ],
+    "lo": [
+      0,
+      0
+    ],
+    "hi": [
+      9,
+      9
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:y"
+    },
+    "p": {
+      "_type": "plot2D",
+      "curves": {
+        "c": {
+          "_type": "curve",
+          "curveType": "points",
+          "x": "#constants:x",
+          "y": "#constants:y",
+          "yTo": "#constants:hi",
+          "yFrom": "#constants:lo",
+          "yErrorUpper": "#constants:e2",
+          "yErrorLower": "#constants:e1",
+          "xErrorUpper": "#constants:e2",
+          "xErrorLower": "#constants:e1"
+        }
+      }
+    }
+  }
+}

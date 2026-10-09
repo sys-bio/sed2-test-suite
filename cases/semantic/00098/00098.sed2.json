@@ -1,0 +1,41 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "sf": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "sp": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "x = ",
+        "1",
+        " unit"
+      ]
+    },
+    "one": {
+      "_type": "stringFormation",
+      "concatenate": [
+        "alone"
+      ]
+    }
+  },
+  "outputs": {
+    "sf": {
+      "_type": "report",
+      "data": "#tasks:sf"
+    },
+    "sp": {
+      "_type": "report",
+      "data": "#tasks:sp"
+    },
+    "one": {
+      "_type": "report",
+      "data": "#tasks:one"
+    }
+  }
+}

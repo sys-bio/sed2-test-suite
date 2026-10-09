@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "Sa": {
+      "file": "00237.Sa.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "cell": {
+      "file": "00237.cell.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "p": {
+      "file": "00237.p.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "q": {
+      "file": "00237.q.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "J": {
+      "file": "00237.J.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "Sc": {
+      "file": "00237.Sc.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

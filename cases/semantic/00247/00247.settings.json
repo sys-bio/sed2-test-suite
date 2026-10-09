@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "r": {
+      "file": "00247.r.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 2,
+      "labels": {
+        "rows": false,
+        "columns": true
+      }
+    }
+  },
+  "plots": {
+    "p": {
+      "file": "00247.p_as_data.csv",
+      "format": "csv",
+      "type": "plot2D"
+    }
+  }
+}

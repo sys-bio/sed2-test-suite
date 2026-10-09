@@ -1,0 +1,50 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00226.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "c1": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:m.model",
+      "setValues": {
+        "k": 7
+      }
+    },
+    "c2": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:c1.model",
+      "setValues": {
+        "j": 8
+      }
+    }
+  },
+  "outputs": {
+    "k2": {
+      "_type": "report",
+      "data": "#tasks:c2.model['k']"
+    },
+    "j2": {
+      "_type": "report",
+      "data": "#tasks:c2.model['j']"
+    },
+    "k1": {
+      "_type": "report",
+      "data": "#tasks:c1.model['k']"
+    },
+    "j1": {
+      "_type": "report",
+      "data": "#tasks:c1.model['j']"
+    },
+    "k0": {
+      "_type": "report",
+      "data": "#tasks:m.model['k']"
+    },
+    "j0": {
+      "_type": "report",
+      "data": "#tasks:m.model['j']"
+    }
+  }
+}

@@ -1,20 +1,41 @@
 {
   "version": "v1.0.0",
-  "tasks": {
-    "m": {
-      "_type": "modelImport",
-      "location": "00005.sbml",
-      "language": "urn:sedml:language:sbml"
-    },
-    "jf": {
-      "_type": "jacobianFull",
-      "model": "#tasks:m.model"
-    }
+  "constants": {
+    "t": [
+      [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      [
+        [
+          7,
+          8
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          11,
+          12
+        ]
+      ]
+    ]
   },
   "outputs": {
     "r": {
       "_type": "report",
-      "data": "#tasks:jf"
+      "data": "#constants:t"
     }
   }
 }

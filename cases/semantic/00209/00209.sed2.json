@@ -1,0 +1,56 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00209.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "lp": {
+      "_type": "loop",
+      "range": {
+        "_type": "numericRange",
+        "start": 1,
+        "numberOfSteps": 3,
+        "interval": 1
+      },
+      "loopVariables": {
+        "k": {
+          "initialValue": 0.25,
+          "subsequentValues": "#tasks:lp:subTasks:nk"
+        }
+      },
+      "subTasks": {
+        "c": {
+          "_type": "modelChange",
+          "inputModel": "#tasks:m.model",
+          "setValues": {
+            "k1": "#tasks:lp:loopVariables:k"
+          }
+        },
+        "s": {
+          "_type": "oneStepODESimulation",
+          "model": "#tasks:lp:subTasks:c.model",
+          "independentVariable": "urn:sedml:symbol:time",
+          "outputVariables": [
+            "S"
+          ],
+          "independentStep": 1
+        },
+        "nk": {
+          "_type": "calculation",
+          "math": "#tasks:lp:loopVariables:k * 2"
+        }
+      },
+      "outputVariableMap": {
+        "S": "#tasks:lp:subTasks:s['S']"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:lp"
+    }
+  }
+}

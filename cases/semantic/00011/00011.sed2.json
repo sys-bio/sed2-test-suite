@@ -1,0 +1,21 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "flag": true,
+    "flags": [
+      true,
+      false,
+      true
+    ]
+  },
+  "outputs": {
+    "rs": {
+      "_type": "report",
+      "data": "#constants:flag"
+    },
+    "rv": {
+      "_type": "report",
+      "data": "#constants:flags"
+    }
+  }
+}

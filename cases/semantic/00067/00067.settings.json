@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "pi": {
+      "file": "00067.pi.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "e": {
+      "file": "00067.e.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "t": {
+      "file": "00067.t.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "f": {
+      "file": "00067.f.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "nan": {
+      "file": "00067.nan.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "inf": {
+      "file": "00067.inf.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "ninf": {
+      "file": "00067.ninf.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "circ": {
+      "file": "00067.circ.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "sinh": {
+      "file": "00063.sinh.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "cosh": {
+      "file": "00063.cosh.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "tanh": {
+      "file": "00063.tanh.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "sech": {
+      "file": "00063.sech.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "csch": {
+      "file": "00063.csch.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "coth": {
+      "file": "00063.coth.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "s0": {
+      "file": "00063.s0.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "c0": {
+      "file": "00063.c0.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

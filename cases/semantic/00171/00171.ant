@@ -1,0 +1,11 @@
+model c3
+  A -> B; k1*A - k2*B
+  B -> C; k3*B - k4*C
+  k1 = 1
+  k2 = 0.5
+  k3 = 2
+  k4 = 0.25
+  A = 1
+  B = 2
+  C = 3
+end

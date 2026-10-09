@@ -1,0 +1,4 @@
+model timedep
+  x = 0.5
+  x' = cos(time)
+end

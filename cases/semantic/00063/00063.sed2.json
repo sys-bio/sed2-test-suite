@@ -1,0 +1,71 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "sinh": {
+      "_type": "calculation",
+      "math": "sinh(ln(2))"
+    },
+    "cosh": {
+      "_type": "calculation",
+      "math": "cosh(ln(2))"
+    },
+    "tanh": {
+      "_type": "calculation",
+      "math": "tanh(ln(2))"
+    },
+    "sech": {
+      "_type": "calculation",
+      "math": "sech(ln(2))"
+    },
+    "csch": {
+      "_type": "calculation",
+      "math": "csch(ln(2))"
+    },
+    "coth": {
+      "_type": "calculation",
+      "math": "coth(ln(2))"
+    },
+    "s0": {
+      "_type": "calculation",
+      "math": "sinh(0)"
+    },
+    "c0": {
+      "_type": "calculation",
+      "math": "cosh(0)"
+    }
+  },
+  "outputs": {
+    "sinh": {
+      "_type": "report",
+      "data": "#tasks:sinh"
+    },
+    "cosh": {
+      "_type": "report",
+      "data": "#tasks:cosh"
+    },
+    "tanh": {
+      "_type": "report",
+      "data": "#tasks:tanh"
+    },
+    "sech": {
+      "_type": "report",
+      "data": "#tasks:sech"
+    },
+    "csch": {
+      "_type": "report",
+      "data": "#tasks:csch"
+    },
+    "coth": {
+      "_type": "report",
+      "data": "#tasks:coth"
+    },
+    "s0": {
+      "_type": "report",
+      "data": "#tasks:s0"
+    },
+    "c0": {
+      "_type": "report",
+      "data": "#tasks:c0"
+    }
+  }
+}

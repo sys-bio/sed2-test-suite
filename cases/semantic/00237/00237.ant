@@ -1,0 +1,12 @@
+model lab
+  compartment cell = 2
+  species Sa in cell, Sb in cell
+  substanceOnly species Sc in cell
+  Sa = 3
+  Sb = 0
+  Sc = 4
+  p = 5
+  q := 2*p
+  J: Sa -> Sb; k*Sa*cell
+  k = 0.5
+end

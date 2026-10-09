@@ -1,0 +1,18 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "d": {
+      "_type": "csvImport",
+      "headers": true,
+      "ncols": 2,
+      "nrows": 1,
+      "location": "00260.d.csv"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:d"
+    }
+  }
+}

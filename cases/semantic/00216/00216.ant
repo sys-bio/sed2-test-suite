@@ -1,0 +1,7 @@
+model src
+  -> A; v
+  A -> ; k1*A
+  v = 2
+  k1 = 1
+  A = 1
+end

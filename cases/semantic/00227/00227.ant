@@ -1,0 +1,6 @@
+model pars
+  species X
+  X = 1
+  k = 2
+  j = 3
+end

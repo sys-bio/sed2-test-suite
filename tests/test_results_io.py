@@ -238,14 +238,16 @@ def test_plot2d_rejects_duplicate_columns(tmp_path):
 
 # ---------------------------------------------------------------- Plot3D
 
-def test_plot3d_roundtrip_orders_by_index(tmp_path):
+def test_plot3d_roundtrip_keeps_the_stored_order(tmp_path):
+    """The groups come back in the order they were written (ascending `order`), not by name or by `index`."""
     z = np.arange(6.0).reshape(2, 3)
     s_b = rio.Surface(np.array([0.0, 1.0]), np.array([0.0, 1.0, 2.0]), z, "heatMap", 0)
     s_a = rio.Surface(np.array([0.0, 1.0]), np.array([0.0, 1.0, 2.0]), z * 2, "surfaceMesh", 1)
+    s_c = rio.Surface(np.array([0.0, 1.0]), np.array([0.0, 1.0, 2.0]), z * 3, "contour", 2)
     path = tmp_path / "p.h5"
-    rio.write_plot3d_h5(path, rio.Plot3DData({"a": s_a, "b": s_b}))
+    rio.write_plot3d_h5(path, rio.Plot3DData({"a": s_a, "c": s_c, "b": s_b}))
     r = rio.read_plot3d_h5(path)
-    assert list(r.surfaces) == ["b", "a"]
+    assert list(r.surfaces) == ["a", "c", "b"]
     assert r.surfaces["a"].surface_type == "surfaceMesh" and r.surfaces["a"].index == 1
     assert r.surfaces["a"].z.tolist() == (z * 2).tolist()
     assert r.surfaces["b"].x.tolist() == [0.0, 1.0]

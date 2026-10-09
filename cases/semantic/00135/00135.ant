@@ -1,0 +1,5 @@
+model decay
+  S -> ; k*S
+  k = 0.5
+  S = 10
+end

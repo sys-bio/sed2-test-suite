@@ -1,0 +1,77 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "gx": [
+      0,
+      1,
+      2
+    ],
+    "gy": [
+      0,
+      1
+    ],
+    "gz": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ],
+    "x": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "y": [
+      10,
+      20,
+      30,
+      40
+    ],
+    "e": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#constants:gz"
+    },
+    "q": {
+      "_type": "plot3D",
+      "surfaces": {
+        "b": {
+          "surfaceType": "heatMap",
+          "x": "#constants:gx",
+          "y": "#constants:gy",
+          "z": "#constants:gz",
+          "order": 2
+        },
+        "a": {
+          "surfaceType": "surfaceMesh",
+          "x": "#constants:gx",
+          "y": "#constants:gy",
+          "z": "#constants:gz",
+          "order": 1
+        },
+        "c": {
+          "surfaceType": "parametricCurve",
+          "x": "#constants:x",
+          "y": "#constants:y",
+          "z": "#constants:e",
+          "order": 1
+        }
+      },
+      "legend": true
+    }
+  }
+}

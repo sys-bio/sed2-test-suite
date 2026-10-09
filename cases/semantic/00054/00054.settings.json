@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical"
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "neg1": {
+      "file": "00054.neg1.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "neg2": {
+      "file": "00054.neg2.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "neg3": {
+      "file": "00054.neg3.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "neg4": {
+      "file": "00054.neg4.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "plus": {
+      "file": "00054.plus.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    },
+    "neg5": {
+      "file": "00054.neg5.csv",
+      "format": "csv",
+      "dtype": "number",
+      "ndim": 0
+    }
+  }
+}

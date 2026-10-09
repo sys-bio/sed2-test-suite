@@ -49,3 +49,13 @@ jobs:
         run: python -m sed2suite.validate_suite
         env:
           PYTHONPATH: tools
+
+      - name: The disagreement log is valid
+        run: python -m sed2suite.disagreements --check
+        env:
+          PYTHONPATH: tools
+
+      - name: Every element is covered or deferred on purpose
+        run: python -m sed2suite.coverage --check
+        env:
+          PYTHONPATH: tools

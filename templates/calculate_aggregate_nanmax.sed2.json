@@ -1,0 +1,29 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      3,
+      1,
+      "NaN",
+      1,
+      5,
+      9,
+      "NaN",
+      6
+    ]
+  },
+  "tasks": {
+    "X_nanmax": {
+      "_type": "aggregationCalculation",
+      "name": "maximum ignoring NaN",
+      "input": "#constants:X",
+      "notes": "Intended function: maximum ignoring NaN (KISAO:0000828).  The specification cannot yet say which function an AggregationCalculation computes (SED2/TODO.md: AggregationCalculation)."
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:X_nanmax"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": {
+      "time": 50,
+      "S1": 6,
+      "k3": -3,
+      "err": 400.2456
+    }
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#tasks:block"
+    }
+  },
+  "tasks": {
+    "block": {
+      "_type": "createDataBlock",
+      "data": "#constants:X",
+      "notes": "A dictionary constant cannot be reported directly any more; a data block of it can."
+    }
+  }
+}

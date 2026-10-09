@@ -1,0 +1,7 @@
+model sq
+  -> S; v
+  S -> ; k*S^2
+  v = 2
+  k = 0.5
+  S = 1.5
+end

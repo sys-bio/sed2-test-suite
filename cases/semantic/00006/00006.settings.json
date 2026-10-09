@@ -1,12 +1,11 @@
 {
   "schemaVersion": 1,
   "tolerances": {
-    "absolute": 1e-07,
-    "relative": 0.0001
+    "absolute": 1e-09,
+    "relative": 1e-09
   },
   "provenance": {
-    "source": "analytical",
-    "notes": "Worked out by hand; see the description."
+    "source": "analytical"
   },
   "backends": [
     "roadrunner",
@@ -15,14 +14,10 @@
   ],
   "reports": {
     "r": {
-      "dtype": "number",
       "file": "00006.r.csv",
       "format": "csv",
-      "labels": {
-        "columns": true,
-        "rows": true
-      },
-      "ndim": 2
+      "dtype": "number",
+      "ndim": 1
     }
   }
 }

@@ -1,0 +1,12 @@
+model chain
+  compartment c = 1
+  species S1 in c, S2 in c
+  S1 = 1
+  S2 = 0.5
+  $Src -> S1; k0
+  J1: S1 -> S2; k1*S1
+  J2: S2 -> $Snk; k2*S2
+  k0 = 2
+  k1 = 0.5
+  k2 = 1
+end

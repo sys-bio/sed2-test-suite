@@ -1,0 +1,20 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "X": [
+      0,
+      1,
+      2,
+      5,
+      10,
+      20,
+      50
+    ]
+  },
+  "outputs": {
+    "report": {
+      "_type": "report",
+      "data": "#constants:X"
+    }
+  }
+}

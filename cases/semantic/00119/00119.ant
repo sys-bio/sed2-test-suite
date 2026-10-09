@@ -1,0 +1,7 @@
+model osc
+  x = 1
+  v = 0
+  x' = v
+  v' = -w^2*x
+  w = 2
+end

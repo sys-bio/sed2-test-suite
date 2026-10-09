@@ -1,0 +1,71 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "asinh": {
+      "_type": "calculation",
+      "math": "arcsinh(0.75)"
+    },
+    "acosh": {
+      "_type": "calculation",
+      "math": "arccosh(1.25)"
+    },
+    "atanh": {
+      "_type": "calculation",
+      "math": "arctanh(0.6)"
+    },
+    "asech": {
+      "_type": "calculation",
+      "math": "arcsech(0.8)"
+    },
+    "acsch": {
+      "_type": "calculation",
+      "math": "arccsch(4 / 3)"
+    },
+    "acoth": {
+      "_type": "calculation",
+      "math": "arccoth(5 / 3)"
+    },
+    "z1": {
+      "_type": "calculation",
+      "math": "arcsinh(0)"
+    },
+    "z2": {
+      "_type": "calculation",
+      "math": "arccosh(1)"
+    }
+  },
+  "outputs": {
+    "asinh": {
+      "_type": "report",
+      "data": "#tasks:asinh"
+    },
+    "acosh": {
+      "_type": "report",
+      "data": "#tasks:acosh"
+    },
+    "atanh": {
+      "_type": "report",
+      "data": "#tasks:atanh"
+    },
+    "asech": {
+      "_type": "report",
+      "data": "#tasks:asech"
+    },
+    "acsch": {
+      "_type": "report",
+      "data": "#tasks:acsch"
+    },
+    "acoth": {
+      "_type": "report",
+      "data": "#tasks:acoth"
+    },
+    "z1": {
+      "_type": "report",
+      "data": "#tasks:z1"
+    },
+    "z2": {
+      "_type": "report",
+      "data": "#tasks:z2"
+    }
+  }
+}

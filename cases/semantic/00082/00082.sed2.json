@@ -1,0 +1,35 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "d": {
+      "a": 1,
+      "b": 2,
+      "c": 3
+    },
+    "e": {
+      "a": 10,
+      "b": 20,
+      "c": 30
+    }
+  },
+  "tasks": {
+    "scaled": {
+      "_type": "calculation",
+      "math": "#constants:d * 10"
+    },
+    "summed": {
+      "_type": "calculation",
+      "math": "#constants:d + #constants:e"
+    }
+  },
+  "outputs": {
+    "scaled": {
+      "_type": "report",
+      "data": "#tasks:scaled"
+    },
+    "summed": {
+      "_type": "report",
+      "data": "#tasks:summed"
+    }
+  }
+}

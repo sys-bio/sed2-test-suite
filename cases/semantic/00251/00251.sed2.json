@@ -1,0 +1,75 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "ks": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "s0s": [
+      1,
+      2
+    ]
+  },
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00251.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "ps": {
+      "_type": "parameterScan",
+      "model": "#tasks:m.model",
+      "parameterRanges": [
+        {
+          "_type": "parameterRange",
+          "modelElement": "S",
+          "values": [
+            1,
+            2
+          ]
+        },
+        {
+          "_type": "parameterRange",
+          "modelElement": "k1",
+          "values": [
+            0.25,
+            0.5,
+            0.75
+          ]
+        }
+      ],
+      "subTasks": {
+        "s": {
+          "_type": "oneStepODESimulation",
+          "model": "#tasks:ps.model",
+          "independentVariable": "urn:sedml:symbol:time",
+          "outputVariables": [
+            "S"
+          ],
+          "independentStep": 2
+        }
+      },
+      "outputVariableMap": {
+        "S": "#tasks:ps:subTasks:s['S']"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:ps[:, :, 'S']"
+    },
+    "q": {
+      "_type": "plot3D",
+      "surfaces": {
+        "s": {
+          "surfaceType": "surfaceMesh",
+          "x": "#constants:ks",
+          "y": "#constants:s0s",
+          "z": "#tasks:ps[:, :, 'S']"
+        }
+      }
+    }
+  }
+}

@@ -122,7 +122,7 @@ class Surface:
 
 @dataclass
 class Plot3DData:
-    surfaces: dict  # surface id -> Surface, ordered by index
+    surfaces: dict  # surface id -> Surface, in the stored order (ascending `order`, ties by position)
 
 
 # --------------------------------------------------------------------------- CSV: reports
@@ -345,8 +345,10 @@ def read_plot2d_csv(path) -> Plot2DData:
 def write_plot3d_h5(path, plot: Plot3DData) -> None:
     """One group per surface (named by surface id) with datasets x, y, z and attributes surfaceType, index."""
     _need_h5()
-    with h5py.File(path, "w") as f:
-        for sid, s in sorted(plot.surfaces.items(), key=lambda kv: kv[1].index):
+    # Groups are created in the order of `plot.surfaces` (ascending `order`, ties by position in the document) with
+    # creation order tracked, so that readers get the surfaces back in that order; `index` is the position.
+    with h5py.File(path, "w", track_order=True) as f:
+        for sid, s in plot.surfaces.items():
             g = f.create_group(sid)
             for name in ("x", "y", "z"):
                 _store(g, name, getattr(s, name))
@@ -366,4 +368,4 @@ def read_plot3d_h5(path) -> Plot3DData:
             st = g.attrs.get("surfaceType", "")
             st = st.decode("utf-8") if isinstance(st, bytes) else str(st)
             out[sid] = Surface(_load(g["x"]), _load(g["y"]), _load(g["z"]), st, int(g.attrs.get("index", 0)))
-    return Plot3DData(dict(sorted(out.items(), key=lambda kv: kv[1].index)))
+    return Plot3DData(out)       # in the order the groups were created (the stored order of the surfaces)

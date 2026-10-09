@@ -36,7 +36,7 @@ def test_save_and_load_round_trip(tmp_path):
 def test_valid_entry_with_everything():
     e = entry(status="resolved", diagnosis="solver setting", resolution="tightened the relative tolerance to 1e-8",
               report="rep1", date="2026-10-08", size={"maxAbsolute": 1e-5, "maxRelative": "inf", "where": "row 3"},
-              symptom="drift", reference="GAPS.md S-008")
+              symptom="drift", reference="SED2/TODO.md: CsvImport")
     assert dg.validate_log(log_of(e)) == []
 
 

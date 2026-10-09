@@ -1,0 +1,7 @@
+model amt
+  compartment c = 2
+  substanceOnly species S in c
+  S = 4
+  S -> ; k*S
+  k = 0.5
+end

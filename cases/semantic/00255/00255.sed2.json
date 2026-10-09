@@ -1,0 +1,23 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "d": {
+      "_type": "csvImport",
+      "columnNames": [
+        "u",
+        "v"
+      ],
+      "location": "00255.d.csv"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:d"
+    },
+    "v": {
+      "_type": "report",
+      "data": "#tasks:d[:, 'v']"
+    }
+  }
+}

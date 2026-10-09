@@ -1,0 +1,7 @@
+model closed
+  A -> B; kf*A - kr*B
+  kf = 1
+  kr = 0.5
+  A = 2
+  B = 1
+end
