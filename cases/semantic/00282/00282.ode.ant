@@ -1,0 +1,14 @@
+model monod
+  species S, B
+  S = 10
+  B = 0.02
+  Vmax = 5
+  Km = 2
+  # the uptake and growth rates, set from the FBA solution between intervals; they start at the values for S = 10
+  R_EX_S = -4.166666666666667
+  R_BIOMASS = 0.4166666666666667
+  # the uptake limit the FBA model is given: Monod kinetics at the current substrate concentration
+  R_EX_S_lower_bound := -Vmax*S/(Km + S)
+  uptake: S => ; -R_EX_S*B
+  growth: => B; R_BIOMASS*B
+end

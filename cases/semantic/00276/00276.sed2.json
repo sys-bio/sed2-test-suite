@@ -1,0 +1,28 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00276.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "l": {
+      "_type": "modelElementList",
+      "model": "#tasks:m.model",
+      "includeTypes": [
+        "reaction"
+      ]
+    },
+    "f": {
+      "_type": "fluxBalanceAnalysis",
+      "model": "#tasks:m.model",
+      "outputVariables": "#tasks:l.strings"
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:f"
+    }
+  }
+}

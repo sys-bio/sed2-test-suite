@@ -39,9 +39,9 @@ def test_uncovered_ignores_deferred(tmp_path, monkeypatch):
     monkeypatch.setattr(coverage, "DEFERRED", {"style": "placeholder", "calculation": "no longer true"})
     assert coverage.stale_deferrals(data) == ["calculation"]
     text = coverage.render(data)
-    assert "| scatter | 0 | 0 | 0 | 0 | **NO CASE** |" in text
-    assert "| style | 0 | 0 | 0 | 0 | deferred: placeholder |" in text
-    assert "| calculation | 1 | 1 | 0 | 0 | covered |" in text
+    assert "| scatter | 0 | 0 | 0 | 0 | 0 | **NO CASE** |" in text
+    assert "| style | 0 | 0 | 0 | 0 | 0 | deferred: placeholder |" in text
+    assert "| calculation | 1 | 1 | 0 | 0 | 0 | covered |" in text
 
 
 def test_every_tag_of_the_real_suite_is_covered_or_deferred():

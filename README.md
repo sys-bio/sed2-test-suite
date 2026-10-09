@@ -4,13 +4,13 @@ A test suite for interpreters of SED2 documents.  It is modeled after the
 [SBML Test Suite](https://github.com/sbmlteam/sbml-test-suite): each test case is a SED2 document plus the
 input files it needs and the results a correct interpreter must produce.
 
-Status: under construction.  The semantic cases 00001-00273 exist.  Every expected result was derived by hand, and
-every case has been run through the pySED2Translate backends (roadrunner, COPASI, OpenCOR) and agrees on each backend
-that can run it (`settings.json` lists them).  They cover constants, calculations and data manipulation, ODE time
-courses, steady states and Jacobians, ranges and repeats (Scatter, Loop, ParameterScan), ModelChange (`setValues`,
+Status: under construction.  The semantic cases 00001-00282 exist.  Every expected result was derived by hand, and
+every case has been run through the pySED2Translate backends (roadrunner, COPASI, OpenCOR; COBRApy for flux balance
+analysis) and agrees on each backend that can run it (`settings.json` lists them).  They cover constants, calculations and data manipulation, ODE time
+courses, steady states and Jacobians, flux balance analysis, ranges and repeats (Scatter, Loop, ParameterScan), ModelChange (`setValues`,
 `removeElements`), ModelElementList, CsvImport and the data behind Plot2D and Plot3D.  What is not yet covered, and why,
-is in [docs/COVERAGE.md](docs/COVERAGE.md) and [docs/deferred.md](docs/deferred.md): chiefly stochastic simulation, flux
-balance analysis, DataImport, aggregations and task parameters.
+is in [docs/COVERAGE.md](docs/COVERAGE.md) and [docs/deferred.md](docs/deferred.md): chiefly stochastic simulation,
+DataImport, aggregations and task parameters.
 
 ## Layout
 

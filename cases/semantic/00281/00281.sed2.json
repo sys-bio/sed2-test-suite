@@ -1,0 +1,54 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00281.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "lp": {
+      "_type": "loop",
+      "range": {
+        "_type": "numericRange",
+        "start": 1,
+        "numberOfSteps": 3,
+        "interval": 1
+      },
+      "loopVariables": {
+        "bound": {
+          "initialValue": -10.0,
+          "subsequentValues": "#tasks:lp:subTasks:half"
+        }
+      },
+      "subTasks": {
+        "c": {
+          "_type": "modelChange",
+          "inputModel": "#tasks:m.model",
+          "setValues": {
+            "R_EX_glc_lower_bound": "#tasks:lp:loopVariables:bound"
+          }
+        },
+        "f": {
+          "_type": "fluxBalanceAnalysis",
+          "model": "#tasks:lp:subTasks:c.model",
+          "outputVariables": [
+            "R_BIOMASS"
+          ]
+        },
+        "half": {
+          "_type": "calculation",
+          "math": "#tasks:lp:loopVariables:bound * 0.5"
+        }
+      },
+      "outputVariableMap": {
+        "growth": "#tasks:lp:subTasks:f['R_BIOMASS']"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:lp"
+    }
+  }
+}

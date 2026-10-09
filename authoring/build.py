@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.join(HERE, "..", "tools"))
 
 from sed2suite import author  # noqa: E402
 
-SERIES = ["constants", "calculations", "timecourses", "steadystate", "repeats", "modelchange", "dataplots", "misc"]   # in the order the numbers were handed out
+SERIES = ["constants", "calculations", "timecourses", "steadystate", "repeats", "modelchange", "dataplots", "misc", "fba"]   # in the order the numbers were handed out
 
 
 def main(argv=None) -> int:

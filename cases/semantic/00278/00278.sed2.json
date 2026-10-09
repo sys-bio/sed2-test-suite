@@ -1,0 +1,32 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00278.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "c": {
+      "_type": "modelChange",
+      "inputModel": "#tasks:m.model",
+      "setValues": {
+        "R_EX_glc_lower_bound": -5
+      }
+    },
+    "f": {
+      "_type": "fluxBalanceAnalysis",
+      "model": "#tasks:c.model",
+      "outputVariables": [
+        "R_BIOMASS",
+        "R_RESP",
+        "R_FERM"
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:f"
+    }
+  }
+}

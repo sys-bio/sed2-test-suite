@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" level="3" version="1" fbc:required="false">
+  <model id="overflow" fbc:strict="true">
+    <listOfCompartments>
+      <compartment id="e" constant="true"/>
+      <compartment id="c" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="M_glc_e" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_glc_c" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_ac_c" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_bm" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="R_EX_glc_lower_bound" value="-10.0" constant="true"/>
+      <parameter id="R_EX_glc_upper_bound" value="1000.0" constant="true"/>
+      <parameter id="R_GLCt_lower_bound" value="0.0" constant="true"/>
+      <parameter id="R_GLCt_upper_bound" value="1000.0" constant="true"/>
+      <parameter id="R_RESP_lower_bound" value="0.0" constant="true"/>
+      <parameter id="R_RESP_upper_bound" value="6.0" constant="true"/>
+      <parameter id="R_FERM_lower_bound" value="0.0" constant="true"/>
+      <parameter id="R_FERM_upper_bound" value="1000.0" constant="true"/>
+      <parameter id="R_EX_ac_lower_bound" value="0.0" constant="true"/>
+      <parameter id="R_EX_ac_upper_bound" value="1000.0" constant="true"/>
+      <parameter id="R_ATPM_lower_bound" value="0.5" constant="true"/>
+      <parameter id="R_ATPM_upper_bound" value="1000.0" constant="true"/>
+      <parameter id="R_BIOMASS_lower_bound" value="0.0" constant="true"/>
+      <parameter id="R_BIOMASS_upper_bound" value="1000.0" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="R_EX_glc" reversible="true" fast="false" fbc:lowerFluxBound="R_EX_glc_lower_bound" fbc:upperFluxBound="R_EX_glc_upper_bound">
+        <listOfReactants>
+          <speciesReference species="M_glc_e" stoichiometry="1.0" constant="true"/>
+        </listOfReactants>
+      </reaction>
+      <reaction id="R_GLCt" reversible="false" fast="false" fbc:lowerFluxBound="R_GLCt_lower_bound" fbc:upperFluxBound="R_GLCt_upper_bound">
+        <listOfReactants>
+          <speciesReference species="M_glc_e" stoichiometry="1.0" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_glc_c" stoichiometry="1.0" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_RESP" reversible="false" fast="false" fbc:lowerFluxBound="R_RESP_lower_bound" fbc:upperFluxBound="R_RESP_upper_bound">
+        <listOfReactants>
+          <speciesReference species="M_glc_c" stoichiometry="1.0" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_bm" stoichiometry="0.024" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_FERM" reversible="false" fast="false" fbc:lowerFluxBound="R_FERM_lower_bound" fbc:upperFluxBound="R_FERM_upper_bound">
+        <listOfReactants>
+          <speciesReference species="M_glc_c" stoichiometry="1.0" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_ac_c" stoichiometry="2.0" constant="true"/>
+          <speciesReference species="M_bm" stoichiometry="0.006" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_EX_ac" reversible="false" fast="false" fbc:lowerFluxBound="R_EX_ac_lower_bound" fbc:upperFluxBound="R_EX_ac_upper_bound">
+        <listOfReactants>
+          <speciesReference species="M_ac_c" stoichiometry="1.0" constant="true"/>
+        </listOfReactants>
+      </reaction>
+      <reaction id="R_ATPM" reversible="false" fast="false" fbc:lowerFluxBound="R_ATPM_lower_bound" fbc:upperFluxBound="R_ATPM_upper_bound">
+        <listOfReactants>
+          <speciesReference species="M_glc_c" stoichiometry="1.0" constant="true"/>
+        </listOfReactants>
+      </reaction>
+      <reaction id="R_BIOMASS" reversible="false" fast="false" fbc:lowerFluxBound="R_BIOMASS_lower_bound" fbc:upperFluxBound="R_BIOMASS_upper_bound">
+        <listOfReactants>
+          <speciesReference species="M_bm" stoichiometry="1.0" constant="true"/>
+        </listOfReactants>
+      </reaction>
+    </listOfReactions>
+    <fbc:listOfObjectives fbc:activeObjective="obj">
+      <fbc:objective fbc:id="obj" fbc:type="maximize">
+        <fbc:listOfFluxObjectives>
+          <fbc:fluxObjective fbc:reaction="R_BIOMASS" fbc:coefficient="1.0"/>
+        </fbc:listOfFluxObjectives>
+      </fbc:objective>
+    </fbc:listOfObjectives>
+  </model>
+</sbml>

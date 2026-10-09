@@ -1,0 +1,33 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00275.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "f": {
+      "_type": "fluxBalanceAnalysis",
+      "model": "#tasks:m.model",
+      "outputVariables": [
+        "R_RESP",
+        "R_BIOMASS"
+      ],
+      "workingAlgorithms": [
+        {
+          "algorithm": "KISAO:0000437"
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:f"
+    },
+    "b": {
+      "_type": "report",
+      "data": "#tasks:f['R_BIOMASS']"
+    }
+  }
+}

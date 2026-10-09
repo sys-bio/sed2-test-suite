@@ -1,0 +1,28 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00274.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "f": {
+      "_type": "fluxBalanceAnalysis",
+      "model": "#tasks:m.model",
+      "outputVariables": [
+        "R_BIOMASS",
+        "R_RESP",
+        "R_FERM",
+        "R_EX_glc",
+        "R_EX_ac",
+        "R_ATPM"
+      ]
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:f"
+    }
+  }
+}

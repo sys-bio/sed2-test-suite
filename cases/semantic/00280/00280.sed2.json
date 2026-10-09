@@ -1,0 +1,60 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00280.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "ps": {
+      "_type": "parameterScan",
+      "model": "#tasks:m.model",
+      "parameterRanges": [
+        {
+          "_type": "parameterRange",
+          "modelElement": "R_EX_glc_lower_bound",
+          "values": [
+            -10.0,
+            -5.0
+          ]
+        },
+        {
+          "_type": "parameterRange",
+          "modelElement": "R_RESP_upper_bound",
+          "values": [
+            2.0,
+            6.0
+          ]
+        }
+      ],
+      "subTasks": {
+        "c": {
+          "_type": "modelChange",
+          "inputModel": "#tasks:m.model",
+          "setValues": {
+            "R_EX_glc_lower_bound": "#tasks:ps.ranges['R_EX_glc_lower_bound']",
+            "R_RESP_upper_bound": "#tasks:ps.ranges['R_RESP_upper_bound']"
+          }
+        },
+        "f": {
+          "_type": "fluxBalanceAnalysis",
+          "model": "#tasks:ps:subTasks:c.model",
+          "outputVariables": [
+            "R_BIOMASS",
+            "R_FERM"
+          ]
+        }
+      },
+      "outputVariableMap": {
+        "growth": "#tasks:ps:subTasks:f['R_BIOMASS']",
+        "fermentation": "#tasks:ps:subTasks:f['R_FERM']"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:ps"
+    }
+  }
+}
