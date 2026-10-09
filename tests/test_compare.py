@@ -353,6 +353,86 @@ def test_compare_case_needs_one_settings_file(tmp_path):
         cmp.compare_case(str(tmp_path / "x"), str(tmp_path))
 
 
+# ---------------------------------------------------------------- measuring differences
+
+def test_measure_identical():
+    m = cmp.measure_difference(ad([[0.0, 1.0], [1.0, 2.0]]), ad([[0.0, 1.0], [1.0, 2.0]]))
+    assert m == {"comparable": True, "maxAbsolute": 0.0, "maxRelative": 0.0, "where": ""}
+
+
+def test_measure_reports_largest_difference_with_labels():
+    exp = ad([[0.0, 1.0], [1.0, 2.0]], [["a", "b"], ["time", "S1"]])
+    act = ad([[0.0, 1.5], [1.0, 2.1]], [["a", "b"], ["time", "S1"]])
+    m = cmp.measure_difference(act, exp)
+    assert m["comparable"]
+    assert m["maxAbsolute"] == pytest.approx(0.5)
+    assert m["maxRelative"] == pytest.approx(0.5)
+    assert "row 0 (a)" in m["where"] and "column 1 (S1)" in m["where"]
+
+
+def test_measure_relative_ignores_zero_expected():
+    m = cmp.measure_difference(ad([1e-9, 2.0]), ad([0.0, 2.0]))
+    assert m["maxAbsolute"] == pytest.approx(1e-9)
+    assert m["maxRelative"] == 0.0
+
+
+def test_measure_nan_and_inf():
+    same = cmp.measure_difference(ad([math.nan, math.inf]), ad([math.nan, math.inf]))
+    assert same["maxAbsolute"] == 0.0
+    nan_vs_number = cmp.measure_difference(ad([math.nan]), ad([1.0]))
+    assert nan_vs_number["maxAbsolute"] == math.inf and nan_vs_number["maxRelative"] == math.inf
+
+
+def test_measure_scalars_and_empty():
+    assert cmp.measure_difference(ad(3.0), ad(2.0))["maxAbsolute"] == pytest.approx(1.0)
+    assert cmp.measure_difference(ad(np.zeros((0, 2))), ad(np.zeros((0, 2))))["maxAbsolute"] == 0.0
+
+
+def test_measure_not_comparable():
+    m = cmp.measure_difference(ad([1.0, 2.0]), ad([1.0, 2.0, 3.0]))
+    assert not m["comparable"] and "shape" in m["reason"]
+    m = cmp.measure_difference(ad(np.array(["a", "b"], dtype=object)), ad([1.0, 2.0]))
+    assert not m["comparable"] and "strings" in m["reason"]
+
+
+def test_measure_strings_count_differences():
+    a = ad(np.array(["x", "y", "z"], dtype=object))
+    e = ad(np.array(["x", "q", "z"], dtype=object))
+    m = cmp.measure_difference(a, e)
+    assert m["comparable"] and m["maxAbsolute"] == 1.0 and "row 1" in m["where"]
+
+
+def _sub(tmp_path):
+    (tmp_path / "b").mkdir(exist_ok=True)
+    return tmp_path / "b"
+
+
+def test_measure_case(tmp_path):
+    case, out, settings = make_case(tmp_path, actual_values=[[0.0, 1.0], [1.0, 2.5]])
+    (res,) = cmp.measure_case(case, out, settings)
+    assert res["name"] == "r" and res["file"] == "r.csv" and not res["ok"]
+    assert res["maxAbsolute"] == pytest.approx(0.5)
+    case, out, settings = make_case(_sub(tmp_path))
+    (res,) = cmp.measure_case(case, out, settings)
+    assert res["ok"] and res["maxAbsolute"] == 0.0
+
+
+def test_measure_case_within_tolerance_is_ok_but_nonzero(tmp_path):
+    case, out, settings = make_case(tmp_path, actual_values=[[0.0, 1.0], [1.0, 2.00001]])
+    (res,) = cmp.measure_case(case, out, settings)
+    assert res["ok"] and res["maxAbsolute"] > 0
+
+
+def test_measure_case_missing_and_unreadable(tmp_path):
+    case, out, settings = make_case(tmp_path, actual_values="skip")
+    (res,) = cmp.measure_case(case, out, settings)
+    assert not res["ok"] and not res["comparable"] and "not produced" in res["reason"]
+    case, out, settings = make_case(_sub(tmp_path))
+    (tmp_path / "b" / "out" / "r.csv").write_text("a,b\n1,2,3\n")
+    (res,) = cmp.measure_case(case, out, settings)
+    assert not res["ok"] and "cannot read" in res["reason"]
+
+
 # ---------------------------------------------------------------- command line
 
 TOOLS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tools")

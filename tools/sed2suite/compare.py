@@ -247,6 +247,71 @@ def _read_report(path: str, spec: dict) -> rio.AnnotatedData:
                         column_labels=labels.get("columns", False), dtype=spec.get("dtype", "number"))
 
 
+def _describe_position(index: tuple, data: rio.AnnotatedData) -> str:
+    """'row 3 (0.5), column 1 (S1)' for a position in the data, using labels where there are some."""
+    names = ["row", "column"] if len(index) <= 2 else [f"dimension {i}" for i in range(len(index))]
+    parts = []
+    for d, i in enumerate(index):
+        label = data.labels[d][i] if d < len(data.labels) and data.labels[d] else None
+        parts.append(f"{names[d]} {i}" + (f" ({label})" if label is not None else ""))
+    return ", ".join(parts) if parts else "the value"
+
+
+def measure_difference(actual: rio.AnnotatedData, expected: rio.AnnotatedData) -> dict:
+    """How far apart two results are, whatever the tolerance.  Returns a dict with:
+      comparable   False if the shapes differ or one holds strings and the other numbers (then `reason` says so)
+      maxAbsolute  the largest |actual - expected| (nan against a number counts as infinity)
+      maxRelative  the largest |actual - expected| / |expected| over the entries where expected is finite and not 0
+      where        the position of the largest absolute difference, with labels
+    Strings compare exactly: maxAbsolute is the number of entries that differ."""
+    a, e = np.asarray(actual.values), np.asarray(expected.values)
+    if a.shape != e.shape:
+        return {"comparable": False, "reason": f"shape {a.shape}, expected {e.shape}"}
+    a_str, e_str = a.dtype == object or a.dtype.kind in "US", e.dtype == object or e.dtype.kind in "US"
+    if a_str != e_str:
+        return {"comparable": False, "reason": "one result holds strings and the other numbers"}
+    if a_str:
+        differ = np.array([x != y for x, y in zip(a.ravel(), e.ravel())], dtype=bool).reshape(a.shape)
+        count = int(differ.sum())
+        where = _describe_position(tuple(np.argwhere(differ)[0]), expected) if count else ""
+        return {"comparable": True, "maxAbsolute": float(count), "maxRelative": float(count > 0), "where": where}
+    a, e = a.astype(np.float64), e.astype(np.float64)
+    if a.size == 0:
+        return {"comparable": True, "maxAbsolute": 0.0, "maxRelative": 0.0, "where": ""}
+    with np.errstate(invalid="ignore"):
+        diff = np.abs(a - e)
+        same = (np.isnan(a) & np.isnan(e)) | ((np.isinf(a) | np.isinf(e)) & (a == e))
+        diff = np.where(same, 0.0, np.where(np.isnan(diff), np.inf, diff))
+        usable = (e != 0) & np.isfinite(e)
+        rel = np.where(usable, diff / np.where(usable, np.abs(e), 1.0), np.where(np.isinf(diff), np.inf, 0.0))
+    worst = np.unravel_index(int(np.argmax(diff)), diff.shape)
+    return {"comparable": True, "maxAbsolute": float(diff.max()), "maxRelative": float(rel.max()),
+            "where": _describe_position(tuple(int(i) for i in worst), expected) if diff.max() > 0 else ""}
+
+
+def measure_case(expected_dir: str, actual_dir: str, settings: dict) -> list:
+    """For every report in the settings, how far the result in `actual_dir` is from the one in `expected_dir`
+    (a case folder, or another backend's output folder with the same file names).  A list of dicts with the keys of
+    `measure_difference` plus `name`, `file` and `ok` (within the report's tolerance, as `compare_case` judges)."""
+    base = Tolerance().merged(settings.get("tolerances"))
+    out = []
+    for name, spec in settings.get("reports", {}).items():
+        entry = {"name": name, "file": spec["file"]}
+        exp_path, act_path = os.path.join(expected_dir, spec["file"]), os.path.join(actual_dir, spec["file"])
+        if not os.path.exists(act_path) or not os.path.exists(exp_path):
+            entry.update(comparable=False, reason=f"{spec['file']} was not produced", ok=False)
+        else:
+            try:
+                actual, expected = _read_report(act_path, spec), _read_report(exp_path, spec)
+                entry.update(measure_difference(actual, expected))
+                tol = base.merged(spec.get("tolerances"))
+                entry["ok"] = not compare_annotated(actual, expected, tol, spec.get("compare", {}).get("mode", "full"))
+            except (rio.FormatError, OSError, KeyError) as e:
+                entry.update(comparable=False, reason=f"cannot read: {e}", ok=False)
+        out.append(entry)
+    return out
+
+
 def compare_case(case_dir: str, actual_dir: str, settings: Optional[dict] = None) -> list:
     """Compare every report and plot listed in the case's settings.json.  Returns a list of ItemResult."""
     if settings is None:

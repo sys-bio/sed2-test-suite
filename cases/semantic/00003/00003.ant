@@ -1,0 +1,5 @@
+model decay
+  species S1 = 3
+  k1 = 0.5
+  J0: S1 -> ; k1*S1
+end

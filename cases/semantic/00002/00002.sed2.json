@@ -1,0 +1,31 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "a": [
+      1,
+      2,
+      3
+    ],
+    "b": 2
+  },
+  "tasks": {
+    "c": {
+      "_type": "calculation",
+      "math": "1 + #constants:a * #constants:b"
+    },
+    "d": {
+      "_type": "calculation",
+      "math": "sum(#tasks:c)"
+    }
+  },
+  "outputs": {
+    "c": {
+      "_type": "report",
+      "data": "#tasks:c"
+    },
+    "d": {
+      "_type": "report",
+      "data": "#tasks:d"
+    }
+  }
+}

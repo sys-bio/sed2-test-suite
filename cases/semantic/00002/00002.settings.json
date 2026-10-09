@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 0.0001
+  },
+  "provenance": {
+    "source": "analytical",
+    "notes": "Worked out by hand; see the description."
+  },
+  "backends": [
+    "roadrunner",
+    "copasi",
+    "opencor"
+  ],
+  "reports": {
+    "c": {
+      "dtype": "number",
+      "file": "00002.c.csv",
+      "format": "csv",
+      "labels": {
+        "columns": false,
+        "rows": false
+      },
+      "ndim": 1
+    },
+    "d": {
+      "dtype": "number",
+      "file": "00002.d.csv",
+      "format": "csv",
+      "labels": {
+        "columns": false,
+        "rows": false
+      },
+      "ndim": 0
+    }
+  }
+}

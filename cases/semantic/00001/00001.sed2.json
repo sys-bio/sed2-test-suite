@@ -1,0 +1,21 @@
+{
+  "version": "v1.0.0",
+  "constants": {
+    "x": 3,
+    "v": [
+      1,
+      2,
+      3
+    ]
+  },
+  "outputs": {
+    "scalar": {
+      "_type": "report",
+      "data": "#constants:x"
+    },
+    "vector": {
+      "_type": "report",
+      "data": "#constants:v"
+    }
+  }
+}

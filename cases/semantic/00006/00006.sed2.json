@@ -1,0 +1,46 @@
+{
+  "version": "v1.0.0",
+  "tasks": {
+    "m": {
+      "_type": "modelImport",
+      "location": "00006.sbml",
+      "language": "urn:sedml:language:sbml"
+    },
+    "sc": {
+      "_type": "scatter",
+      "range": {
+        "_type": "numericRange",
+        "start": 0.25,
+        "numberOfSteps": 3,
+        "interval": 0.25
+      },
+      "subTasks": {
+        "c": {
+          "_type": "modelChange",
+          "inputModel": "#tasks:m.model",
+          "setValues": {
+            "k1": "#tasks:sc.range"
+          }
+        },
+        "s": {
+          "_type": "oneStepODESimulation",
+          "model": "#tasks:sc:subTasks:c.model",
+          "independentVariable": "time",
+          "outputVariables": [
+            "S1"
+          ],
+          "independentStep": 2
+        }
+      },
+      "outputVariableMap": {
+        "S1": "#tasks:sc:subTasks:s['S1']"
+      }
+    }
+  },
+  "outputs": {
+    "r": {
+      "_type": "report",
+      "data": "#tasks:sc"
+    }
+  }
+}

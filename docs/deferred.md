@@ -1,0 +1,12 @@
+# Deferred until the SED2 format is decided
+
+The suite has no test cases for these, because what a correct interpreter must produce is not yet defined.  Add
+tests when the specification settles each one.
+
+* `ModelChange.addElements` and `ModelChange.replaceElements` (and the order in which the four change attributes
+  of one ModelChange apply): see SED2/TODO.md.  `setValues` and `removeElements` can be tested.
+* `AggregationCalculation` and a repeat's `aggregateOutputVariables`: the function cannot be named in the document.
+* `taskParameters` on any task: their meaning is undefined.
+* `DataImport`, and `CsvImport.organization`: no data formats / CsvImport attributes are defined yet.
+
+Stochastic simulations, DrawFromDistribution and flux balance analysis are a later phase (cases/stochastic).

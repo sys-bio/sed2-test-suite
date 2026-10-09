@@ -126,3 +126,48 @@ carry a `compare.note` saying why.
 Cross-checks in `validate_settings`: the file extension agrees with `format`; every listed file exists in the
 case folder; and the set of report ids and the set of plot ids equal those in the SED2 document.  Ids are
 identifiers (letters, digits, underscore; not starting with a digit), and file names contain no path separators.
+
+## Disagreement log
+
+`disagreements.json` at the root of the suite records every case where two backends, or a backend and the recorded
+results, differ by more than the tolerance.  It is validated by `schemas/disagreements.schema.json` and by
+`python -m sed2suite.disagreements --check` (which also checks that each test exists, that ids are unique, and that
+an entry that is no longer open says what was done).  `--list [--open]` prints one line per entry.
+
+```json
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "D-001",
+      "test": "00003",
+      "date": "2026-10-08",
+      "backends": ["roadrunner", "copasi"],
+      "report": "rep1",
+      "size": { "maxAbsolute": 3.2e-5, "maxRelative": 1.1e-3, "where": "row 12 (4.0), column 1 (S1)" },
+      "symptom": "COPASI's LSODA drifts from CVODE over the last third of the run",
+      "status": "resolved",
+      "diagnosis": "solver setting",
+      "resolution": "set relativeTolerance 1e-10 in the document's algorithm parameters",
+      "reference": ""
+    }
+  ]
+}
+```
+
+| Key | Meaning |
+|---|---|
+| `id` | `D-001`, `D-002`, ...; never reused. |
+| `test` | The five-digit case number. |
+| `backends` | The two or more things that disagree: backend names, and `expected` for the results recorded in the case. |
+| `report` | The report id the difference was found in; leave out for a failure that is not about one report (the script crashed, no output). |
+| `size` | `maxAbsolute` and `maxRelative` (the largest differences found, whatever the tolerance; the number or `"inf"`) and `where` (the position of the largest one, with labels).  Left out when the results could not be compared at all (different shapes, strings against numbers); `symptom` then says why. |
+| `symptom` | What was seen, in words. |
+| `status` | `open`, `resolved` or `wontfix`. |
+| `diagnosis` | `undiagnosed` (still being looked at), `solver setting`, `translator bug`, `simulator bug` or `spec ambiguity`. |
+| `resolution` | What was done, or what is being waited for.  Required once the status is not `open`. |
+| `reference` | Optional pointer: a commit, issue, GAPS.md item or specification section. |
+
+A mismatch only becomes an entry when the cause is not obvious from the output.  The suite runner
+(`pysed2translate.suite_runner --log-draft`) prints draft entries for the disagreements it finds; they are added to
+the file by hand once someone has looked at them.

@@ -14,7 +14,8 @@ cases/
   syntactic/   valid and invalid documents for validation rules (filled in later, from the SED2 project)
   stochastic/  stochastic simulations and DrawFromDistribution (filled in later)
 docs/FORMATS.md        exact file formats for results and settings (normative)
-schemas/               JSON Schemas (settings.json)
+schemas/               JSON Schemas (settings.json, disagreements.json)
+disagreements.json     the log of cases where backends disagree (docs/FORMATS.md)
 tools/sed2suite/       Python tools: results reader/writer, comparison, settings validation, suite validation
 tests/                 pytest tests for the tools
 tags.json              the tag vocabulary ('component' and 'semantic')
@@ -44,18 +45,9 @@ records which.
 
 ## Numbering
 
-Test numbers are stable: once a number is used it is never reused or renumbered.  Blocks are reserved by topic
-so related tests sit together:
-
-| Range | Topic |
-|---|---|
-| 00001-00099 | Constants and reports only (no tasks) |
-| 00100-00199 | Calculations and data manipulation |
-| 00200-00299 | ODE time-course simulations |
-| 00300-00399 | Steady state and Jacobian |
-| 00400-00499 | Ranges, loops and scans |
-| 00500-00599 | Model changes, data imports, plots |
-| 00600 and up | Reserved |
+Cases are numbered in the order they are added, starting at `00001`.  A number is never reused or renumbered, so
+the log, commit messages and bug reports can refer to it for good.  The topic of a case is in its tags, not in its
+number.
 
 ## Using the tools
 
