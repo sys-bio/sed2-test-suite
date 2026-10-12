@@ -10,7 +10,7 @@ for each backend (a backend that cannot run an element shows a smaller number).
 | aggregationCalculation | 0 | 0 | 0 | 0 | 0 | deferred: the function cannot be named in the document (SED2/TODO.md: AggregationCalculation) |
 | annotation | 2 | 2 | 2 | 2 | 0 | covered |
 | axis | 1 | 1 | 1 | 1 | 0 | covered |
-| boundedODESimulation | 2 | 2 | 2 | 0 | 0 | covered |
+| boundedODESimulation | 2 | 1 | 2 | 0 | 0 | covered |
 | boundedStochasticSimulation | 0 | 0 | 0 | 0 | 0 | deferred: stochastic simulation is a later phase |
 | calculation | 68 | 67 | 67 | 67 | 1 | covered |
 | constants | 107 | 107 | 107 | 107 | 0 | covered |
@@ -28,7 +28,7 @@ for each backend (a backend that cannot run an element shows a smaller number).
 | loopVariable | 10 | 9 | 9 | 9 | 1 | covered |
 | modelChange | 25 | 21 | 21 | 20 | 4 | covered |
 | modelElementList | 9 | 8 | 8 | 8 | 1 | covered |
-| modelImport | 119 | 108 | 103 | 82 | 8 | covered |
+| modelImport | 119 | 107 | 103 | 82 | 8 | covered |
 | numericRange | 84 | 80 | 75 | 79 | 1 | covered |
 | oneStepODESimulation | 21 | 21 | 21 | 19 | 0 | covered |
 | oneStepStochasticSimulation | 0 | 0 | 0 | 0 | 0 | deferred: stochastic simulation is a later phase |
@@ -39,9 +39,9 @@ for each backend (a backend that cannot run an element shows a smaller number).
 | plot3D | 3 | 3 | 3 | 3 | 0 | covered |
 | range | 6 | 5 | 5 | 5 | 1 | covered |
 | relabelData | 4 | 4 | 4 | 4 | 0 | covered |
-| report | 282 | 271 | 266 | 245 | 8 | covered |
+| report | 282 | 270 | 266 | 245 | 8 | covered |
 | scatter | 18 | 17 | 17 | 17 | 1 | covered |
-| span | 2 | 2 | 2 | 0 | 0 | covered |
+| span | 2 | 1 | 2 | 0 | 0 | covered |
 | steadyState | 12 | 12 | 12 | 0 | 0 | covered |
 | stringFormation | 10 | 10 | 10 | 10 | 0 | covered |
 | style | 0 | 0 | 0 | 0 | 0 | deferred: presentation only; a placeholder in the specification |

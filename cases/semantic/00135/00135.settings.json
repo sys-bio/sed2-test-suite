@@ -8,7 +8,6 @@
     "source": "analytical"
   },
   "backends": [
-    "roadrunner",
     "copasi"
   ],
   "reports": {
