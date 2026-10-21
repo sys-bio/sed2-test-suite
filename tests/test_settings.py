@@ -83,6 +83,26 @@ def test_negative_tolerance():
     assert st.validate_settings(s)
 
 
+def test_absolute_scale_tolerance():
+    s = good()
+    s["tolerances"] = {"absoluteScale": 1e-3, "relative": 1e-4}
+    assert st.validate_settings(s) == []
+    s["reports"]["rep1"]["tolerances"] = {"absoluteScale": 0.5}
+    s["plots"]["plt1"]["tolerances"] = {"absolute": 1e-6}
+    assert st.validate_settings(s) == []
+    s["tolerances"]["absoluteScale"] = -1
+    assert st.validate_settings(s)
+
+
+def test_absolute_and_absolute_scale_together():
+    s = good()
+    s["tolerances"] = {"absolute": 1e-7, "absoluteScale": 1e-3}
+    assert st.validate_settings(s)
+    s = good()
+    s["reports"]["rep1"]["tolerances"] = {"absolute": 1e-7, "absoluteScale": 1e-3}
+    assert st.validate_settings(s)
+
+
 def test_csv_report_requires_ndim():
     s = good()
     del s["reports"]["rep1"]["ndim"]

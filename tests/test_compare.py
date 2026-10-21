@@ -454,3 +454,183 @@ def test_cli_exit_codes(tmp_path):
     assert p.returncode == 1 and "FAIL" in p.stdout
     p = run_cli(str(tmp_path / "nonexistent"), out)
     assert p.returncode == 2
+
+
+# ---------------------------------------------------------------- absoluteScale
+
+def test_tolerance_absolute_scale_merge():
+    t = Tolerance(1e-7, 1e-4)
+    scaled = t.merged({"absoluteScale": 1e-3})
+    assert scaled == Tolerance(1e-7, 1e-4, 1e-3)
+    assert scaled.merged({"absolute": 5.0}) == Tolerance(5.0, 1e-4, None)      # an absolute replaces a scale
+    assert scaled.merged({"relative": 0.5}) == Tolerance(1e-7, 0.5, 1e-3)
+    assert t.merged({"absolute": 2.0, "relative": 0.1}) == Tolerance(2.0, 0.1)
+    with pytest.raises(ValueError, match="absoluteScale"):
+        t.merged({"absolute": 1.0, "absoluteScale": 1.0})
+
+
+def test_absolute_for():
+    t = Tolerance(1e-7, 0.0, 0.01)
+    assert t.absolute_for(None) == 0.01
+    assert t.absolute_for(200.0) == pytest.approx(2.0)
+    assert t.absolute_for(-200.0) == pytest.approx(2.0)
+    assert t.absolute_for(0.0) == 0.01 and t.absolute_for(math.nan) == 0.01 and t.absolute_for(math.inf) == 0.01
+    np.testing.assert_allclose(t.absolute_for(np.array([0.0, 10.0, math.inf])), [0.01, 0.1, 0.01])
+    assert Tolerance(1e-7, 0.0).absolute_for(200.0) == 1e-7
+
+
+def test_absolute_scale_follows_each_columns_first_row():
+    exp = ad([[0.0, 1000.0, 1.0], [1.0, 1500.0, 1.2]])
+    tol = Tolerance(1e-7, 0.0, 1e-3)          # allowed: 1e-3 for the column starting at 0, 1.0 for 1000, 1e-3 for 1.0
+    assert compare_annotated(ad([[0.0, 1000.5, 1.0], [1.0, 1500.9, 1.2]]), exp, tol) == []
+    out = compare_annotated(ad([[0.0, 1000.5, 1.0], [1.0, 1500.0, 1.202]]), exp, tol)
+    assert len(out) == 1 and "[1, 2]" in out[0].message and "allowed 0.001" in out[0].message
+
+
+def test_absolute_scale_uses_the_first_row_in_last_row_mode():
+    exp = ad([[1000.0], [3000.0]])
+    tol = Tolerance(1e-7, 0.0, 1e-3)          # allowed 1.0, from the first row, though only the last row is compared
+    assert compare_annotated(ad([[0.0], [3000.9]]), exp, tol, mode="lastRow") == []
+    assert compare_annotated(ad([[0.0], [3001.1]]), exp, tol, mode="lastRow") != []
+
+
+def test_absolute_scale_is_used_as_it_is_without_a_table():
+    tol = Tolerance(1e-7, 0.0, 0.5)
+    assert compare_annotated(ad([100.0, 200.0]), ad([100.4, 200.0]), tol) == []        # 1-D: 0.5, not 0.5 * 100
+    assert compare_annotated(ad([100.0, 200.0]), ad([100.6, 200.0]), tol) != []
+    assert compare_annotated(ad(5.0), ad(5.4), tol) == []
+
+
+def test_absolute_scale_does_not_scale_the_key_column_of_keyed_rows():
+    exp = ad([[1000.0, 5.0], [2000.0, 6.0]])
+    tol = Tolerance(1e-7, 0.0, 1e-3)
+    assert compare_annotated(ad([[1000.0, 5.004], [2000.0, 6.0]]), exp, tol, mode="keyedRows") == []
+    assert compare_annotated(ad([[1000.0, 5.006], [2000.0, 6.0]]), exp, tol, mode="keyedRows") != []
+    assert compare_annotated(ad([[1000.5, 5.0], [2000.0, 6.0]]), exp, tol, mode="keyedRows") != []   # key off by 0.5 > 1e-3
+
+
+# ---------------------------------------------------------------- score
+
+def test_score_values():
+    exp = ad([1.0, 2.0, 3.0])
+    allowed = 1e-7 + 1e-4 * 2.0
+    assert cmp.compare_annotated_scored(exp, exp, TOL).score == 0.0
+    half = cmp.compare_annotated_scored(ad([1.0, 2.0 + allowed / 2, 3.0]), exp, TOL)
+    assert half.mismatches == [] and half.score == pytest.approx(0.5) and half.worst == "row 1"
+    double = cmp.compare_annotated_scored(ad([1.0, 2.0 + 2 * allowed, 3.0]), exp, TOL)
+    assert double.mismatches and double.score == pytest.approx(2.0)
+
+
+def test_score_uses_the_worst_entry_and_names_it():
+    exp = ad([[1.0, 2.0], [3.0, 4.0]], [["a", "b"], ["x", "y"]])
+    act = ad([[1.0, 2.0], [3.0, 4.0 + 8e-4]], [["a", "b"], ["x", "y"]])         # allowed at 4.0: 4.0001e-4
+    out = cmp.compare_annotated_scored(act, exp, TOL)
+    assert out.score == pytest.approx(8e-4 / (1e-7 + 4e-4), rel=1e-9)
+    assert out.worst == "row 1 (b), column 1 (y)"
+
+
+def test_score_and_verdict_agree_at_the_boundary():
+    rng = np.random.default_rng(1)
+    for _ in range(300):
+        e = float(rng.normal() * 10.0 ** int(rng.integers(-5, 5)))
+        allowed = 1e-7 + 1e-4 * abs(e)
+        a = e + allowed * float(rng.choice([0.999999, 1.0, 1.000001, 0.5, 3.0]))
+        r = cmp.compare_annotated_scored(ad([a]), ad([e]), TOL)
+        assert (r.mismatches == []) == (r.score <= 1.0), (a, e, r.score)
+
+
+def test_score_is_infinite_for_mismatches_without_a_size():
+    exp = ad([1.0, 2.0])
+    for act in (ad([1.0, math.nan]), ad([1.0, math.inf]), ad([1.0, 2.0, 3.0]), ad([[1.0, 2.0]])):
+        assert math.isinf(cmp.compare_annotated_scored(act, exp, TOL).score)
+    assert math.isinf(cmp.compare_annotated_scored(ad(["a", "b"]), ad(["a", "c"]), TOL).score)
+    assert cmp.compare_annotated_scored(ad(["a", "b"]), ad(["a", "b"]), TOL).score == 0.0
+    assert cmp.compare_annotated_scored(ad([math.nan, math.inf]), ad([math.nan, math.inf]), TOL).score == 0.0
+    assert math.isinf(cmp.compare_annotated_scored(ad([1.0, 2.0], [["a", "b"]]), ad([1.0, 2.0], [["a", "c"]]), TOL).score)
+
+
+def test_score_when_nothing_is_allowed():
+    zero = Tolerance(0.0, 0.0)
+    assert cmp.compare_annotated_scored(ad([1.0]), ad([1.0]), zero).score == 0.0
+    assert math.isinf(cmp.compare_annotated_scored(ad([1.0]), ad([1.0 + 1e-12]), zero).score)
+
+
+def test_numeric_labels_count_towards_the_score():
+    exp = ad([[1.0], [2.0]], [[0.0, 1.0], ["y"]])
+    act = ad([[1.0], [2.0]], [[0.0, 1.0 + 5e-5], ["y"]])             # allowed 1e-7 + 1e-4
+    out = cmp.compare_annotated_scored(act, exp, TOL)
+    assert out.mismatches == [] and out.score == pytest.approx(5e-5 / (1e-7 + 1e-4), rel=1e-6)
+    assert "labels of dimension 0" in out.worst
+
+
+def test_score_in_keyed_rows_and_last_row():
+    a = ad([[0.0, 0.5], [1.0, 10.001]])
+    e = ad([[0.0, 0.5], [1.0, 10.0]])
+    out = cmp.compare_annotated_scored(a, e, TOL, mode="keyedRows")
+    assert out.score == pytest.approx(0.001 / (1e-7 + 1e-3), rel=1e-6) and out.worst == "row 1 (key 1.0)"
+    assert cmp.compare_annotated_scored(a, e, TOL, mode="lastRow").score == pytest.approx(out.score)
+    missing = cmp.compare_annotated_scored(ad([[0.0, 0.5]]), e, TOL, mode="keyedRows")
+    assert math.isinf(missing.score)
+
+
+def test_plot2d_score_and_absolute_scale():
+    exp = p2(a=[1000.0, 2000.0])
+    tol = Tolerance(1e-7, 0.0, 1e-3)          # allowed 1.0, from the column's first value
+    near = cmp.compare_plot2d_scored(p2(a=[1000.5, 2000.0]), exp, tol)
+    assert near.mismatches == [] and near.score == pytest.approx(0.5) and "row 0" in near.worst
+    far = cmp.compare_plot2d_scored(p2(a=[1000.0, 2002.0]), exp, tol)
+    assert far.mismatches and far.score == pytest.approx(2.0)
+    assert math.isinf(cmp.compare_plot2d_scored(p2(a=[1.0, None]), p2(a=[1.0, 3.0]), TOL).score)
+    assert math.isinf(cmp.compare_plot2d_scored(p2(a=[1.0]), p2(b=[1.0]), TOL).score)
+    assert cmp.compare_plot2d_scored(exp, exp, TOL).score == 0.0
+
+
+def test_plot3d_score():
+    a = rio.Plot3DData(surfaces={"s": surf([[1, 2], [3, 4]])})
+    b = rio.Plot3DData(surfaces={"s": surf([[1, 2], [3, 4.001]])})             # off by 1e-3; allowed about 4e-4
+    out = cmp.compare_plot3d_scored(a, b, TOL)
+    assert out.mismatches and 2 < out.score < 3 and "surface 's' z" in out.worst
+    assert cmp.compare_plot3d_scored(a, a, TOL).score == 0.0
+    c = rio.Plot3DData(surfaces={"t": surf([[1, 2], [3, 4]])})
+    assert math.isinf(cmp.compare_plot3d_scored(a, c, TOL).score)
+
+
+def test_compare_case_gives_each_item_a_score(tmp_path):
+    case, out, settings = make_case(tmp_path, actual_values=[[0.0, 1.0], [1.0, 2.0005]], with_plot=True)
+    settings["tolerances"] = {"absoluteScale": 1e-3, "relative": 0.0}
+    r, p = cmp.compare_case(case, out, settings)
+    assert r.ok and r.score == pytest.approx(0.5, rel=1e-6) and "row 1" in r.worst
+    assert p.ok and p.score == 0.0
+    settings["reports"]["r"]["tolerances"] = {"absolute": 1e-7}               # replaces the scale for this report
+    r, _ = cmp.compare_case(case, out, settings)
+    assert not r.ok and r.score > 1
+    settings["reports"]["r"]["tolerances"] = {"absolute": 1e-7, "absoluteScale": 1e-3}
+    with pytest.raises(ValueError, match="absoluteScale"):
+        cmp.compare_case(case, out, settings)
+
+
+def test_compare_case_score_is_infinite_when_nothing_could_be_compared(tmp_path):
+    case, out, _ = make_case(tmp_path, actual_values="skip")
+    assert math.isinf(cmp.compare_case(case, out)[0].score)
+    case, out, _ = make_case(_sub(tmp_path))
+    (tmp_path / "b" / "out" / "r.csv").write_text("a,b\n1,2,3\n")
+    assert math.isinf(cmp.compare_case(case, out)[0].score)
+
+
+def test_measure_case_has_a_score(tmp_path):
+    case, out, settings = make_case(tmp_path, actual_values=[[0.0, 1.0], [1.0, 2.5]])
+    (res,) = cmp.measure_case(case, out, settings)
+    assert not res["ok"] and res["score"] > 1
+    case, out, settings = make_case(_sub(tmp_path))
+    (res,) = cmp.measure_case(case, out, settings)
+    assert res["ok"] and res["score"] == 0.0
+
+
+def test_cli_prints_scores(tmp_path):
+    case, out, _ = make_case(tmp_path)
+    p = run_cli(case, out, "-v")
+    assert "PASS  report r (r.csv)  score 0" in p.stdout and "worst score 0 (report r)" in p.stdout
+    rio.write_csv(os.path.join(out, "r.csv"), AnnotatedData(np.array([[0.0, 1.0], [1.0, 9.0]]), [None, ["time", "S1"]]))
+    p = run_cli(case, out)
+    assert p.returncode == 1 and "FAIL  report r (r.csv)  score " in p.stdout
+    assert "worst score" in p.stdout and "at row 1" in p.stdout

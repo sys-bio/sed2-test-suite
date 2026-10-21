@@ -58,8 +58,10 @@
       "additionalProperties": false,
       "properties": {
         "absolute": { "type": "number", "minimum": 0 },
+        "absoluteScale": { "type": "number", "minimum": 0 },
         "relative": { "type": "number", "minimum": 0 }
-      }
+      },
+      "not": { "required": ["absolute", "absoluteScale"] }
     },
     "report": {
       "type": "object",

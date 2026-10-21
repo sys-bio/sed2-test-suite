@@ -62,6 +62,10 @@ are not recorded or compared.  Number and special-value rules are those of repor
 
 `NNNNN.[plot_id].png` files are optional illustrations and are never compared.
 
+### Plotly figure
+
+`NNNNN.[plot_id].plotly.json` is an optional illustration written by pySED2Translate's generated scripts.  It is a plotly figure (`data`, `layout`, `meta`) built from the same arrays as the plot-as-data file, so a browser can draw it, but it also carries styles (axis scale and limits, legend, size, curve types), nan and the infinities are null, and it is never compared and not listed in `settings.json`.  The `_as_data` file stays the only compared form of a plot.
+
 ## Comparison
 
 Numbers match when `|actual - expected| <= absolute + relative * |expected|`.  `nan` matches `nan` at the same
@@ -73,6 +77,27 @@ the same places.  Plot3D: the same surfaces in the same order, the same `surface
 the same shape within tolerance.
 
 The comparison tool lists at most 10 mismatches per item and then counts the rest.
+
+### Tolerances
+
+`relative` is a fraction of the absolute value of the expected number.  The absolute part is given in one of two ways, never both in one `tolerances` object:
+
+* `absolute`: a fixed number (default 1e-7).
+* `absoluteScale`: a factor.  The absolute tolerance of a column is `absoluteScale * |v0|`, where `v0` is the value in the first row of that column of the expected result, or `absoluteScale` itself when `v0` is 0, nan or infinite.  It suits tables whose columns differ by orders of magnitude.  It applies to two-dimensional numeric reports and to the columns of Plot2D files.  Everything else (0-D and 1-D data, HDF5 arrays, Plot3D, numeric labels, and the key column of `keyedRows`) uses the factor as it is.
+
+A `tolerances` object in a report or plot replaces the case's `absolute` or `absoluteScale` with its own (giving `absolute` there turns the case's `absoluteScale` off for that item, and the other way round), and replaces `relative` separately.
+
+### Score
+
+Every comparison also has a score: the largest, over all the numbers compared, of `|actual - expected|` divided by `absolute + relative * |expected|` (with the absolute part as above).  Numeric labels count in the same way.
+
+* 0 means identical, 1 means exactly at the limit, 2 means twice the allowed difference.
+* An item passes when its score is at most 1.  The verdict is the tolerance rule itself; the score of a value that fails is never below the smallest number above 1, and that of a value that passes never above 1.
+* A mismatch that has no size scores infinity: a different shape or number of labels, strings or non-numeric labels that differ, nan or an infinity against a different value, a missing output file, a column of different length.
+* If the allowed difference is 0, an equal pair scores 0 and a different one infinity.
+* The score of a case is the largest score of its reports and plots.
+
+The score is computed when results are compared and is not stored in `settings.json`.
 
 ### Comparison modes
 
@@ -118,7 +143,7 @@ carry a `compare.note` saying why.
 | Key | Meaning |
 |---|---|
 | `schemaVersion` | Always `1`. |
-| `tolerances` | Default `absolute` and `relative` tolerances for the case.  Required. |
+| `tolerances` | Default tolerances for the case: `relative`, and either `absolute` or `absoluteScale` (see Tolerances).  Required. |
 | `provenance.source` | `analytical` (worked out by hand or from a closed form) or `simulation`. |
 | `provenance.simulators` | Required for `simulation`: name and version of each simulator that produced the expected results. |
 | `backends` | Translator backends that were run and agreed with the expected results.  At least one.  The translator must keep supporting these for this case; losing one is a regression. |
