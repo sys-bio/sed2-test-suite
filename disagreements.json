@@ -34,26 +34,6 @@
       "diagnosis": "simulator bug",
       "resolution": "The translator's OpenCOR backend now refuses a model that has SBML events: the generated script exits with status 11 and the message 'skip: opencor cannot run the model: ...', which the suite runner reports as a skip.  Case 00123 runs on roadrunner and COPASI only.  Deliberately not reported: the sbml2cellml developers are working on translating at least some events.",
       "reference": "pySED2Translate runtime/backends/opencor_backend.py (_time_course); docs/generated-script-contract.md"
-    },
-    {
-      "id": "D-003",
-      "test": "00135",
-      "date": "2026-10-09",
-      "backends": [
-        "roadrunner",
-        "expected"
-      ],
-      "report": "r",
-      "size": {
-        "maxAbsolute": 7.856712e-06,
-        "maxRelative": 0.0001166,
-        "where": "last row (time 10, S)"
-      },
-      "symptom": "BoundedODESimulation on roadrunner 2.10.0 (variable_step_size = true, CVODE, relative tolerance 1e-10, absolute 1e-12): the last row, at the end of the span, is 1.2e-4 (relative) away from the analytic value, outside the case's tolerance (absolute 1e-7, relative 1e-4).  All 194 rows before it are within 2.8e-8.  The same happens with the rk45 integrator in variable-step mode (1.0e-4).  Case 00136 (a chain) is within tolerance at 1.3e-5.  Case 00135 is the reproduction (decay, S' = -0.5 S, S(0) = 10; independentVariableSpan 0 to 10).",
-      "status": "open",
-      "diagnosis": "simulator bug",
-      "resolution": "The translator's roadrunner backend returns the rows exactly as roadrunner gives them.  An earlier version integrated the end point again and substituted it, which hid this; that was removed (CLAUDE.md, never hide a problem).  Case 00135 is unchanged and roadrunner is no longer one of its admitted backends; copasi still is.  Not yet reported to the roadrunner developers (a report is drafted).",
-      "reference": "pySED2Translate runtime/backends/roadrunner_backend.py (span); docs/compensations.md"
     }
   ]
 }
