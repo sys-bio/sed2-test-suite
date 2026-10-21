@@ -402,6 +402,21 @@ def test_measure_strings_count_differences():
     assert m["comparable"] and m["maxAbsolute"] == 1.0 and "row 1" in m["where"]
 
 
+def test_measure_last_row_mode_measures_only_the_last_row():
+    exp = ad([[10.0, 1.0]], [None, ["time", "S1"]])
+    act = ad([[0.0, 5.0], [5.0, 3.0], [10.0, 1.5]], [None, ["time", "S1"]])
+    assert not cmp.measure_difference(act, exp)["comparable"]
+    m = cmp.measure_difference(act, exp, "lastRow")
+    assert m["comparable"] and m["maxAbsolute"] == pytest.approx(0.5) and "column 1 (S1)" in m["where"]
+
+
+def test_measure_case_last_row_mode(tmp_path):
+    case, out, settings = make_case(tmp_path, actual_values=[[0.0, 1.0], [0.5, 1.5], [1.0, 2.5]])
+    settings["reports"]["r"]["compare"] = {"mode": "lastRow"}
+    (res,) = cmp.measure_case(case, out, settings)
+    assert res["comparable"] and not res["ok"] and res["maxAbsolute"] == pytest.approx(0.5)
+
+
 def _sub(tmp_path):
     (tmp_path / "b").mkdir(exist_ok=True)
     return tmp_path / "b"

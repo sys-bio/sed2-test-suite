@@ -390,13 +390,21 @@ def _describe_position(index: tuple, data: rio.AnnotatedData) -> str:
     return ", ".join(parts) if parts else "the value"
 
 
-def measure_difference(actual: rio.AnnotatedData, expected: rio.AnnotatedData) -> dict:
-    """How far apart two results are, whatever the tolerance.  Returns a dict with:
+def _last_row(data: rio.AnnotatedData) -> rio.AnnotatedData:
+    """Only the last row, with the column labels; the row labels are dropped, as `lastRow` comparison drops them."""
+    return rio.AnnotatedData(data.values[-1:], [None] + list(data.labels[1:]), data.dims)
+
+
+def measure_difference(actual: rio.AnnotatedData, expected: rio.AnnotatedData, mode: str = "full") -> dict:
+    """How far apart two results are, whatever the tolerance.  `mode` is the report's comparison mode: with "lastRow"
+    only the last rows are measured, as `compare_annotated` compares them.  Returns a dict with:
       comparable   False if the shapes differ or one holds strings and the other numbers (then `reason` says so)
       maxAbsolute  the largest |actual - expected| (nan against a number counts as infinity)
       maxRelative  the largest |actual - expected| / |expected| over the entries where expected is finite and not 0
       where        the position of the largest absolute difference, with labels
     Strings compare exactly: maxAbsolute is the number of entries that differ."""
+    if mode == "lastRow" and actual.ndim >= 1 and expected.ndim >= 1 and actual.shape[0] > 0 and expected.shape[0] > 0:
+        actual, expected = _last_row(actual), _last_row(expected)
     a, e = np.asarray(actual.values), np.asarray(expected.values)
     if a.shape != e.shape:
         return {"comparable": False, "reason": f"shape {a.shape}, expected {e.shape}"}
@@ -436,9 +444,10 @@ def measure_case(expected_dir: str, actual_dir: str, settings: dict) -> list:
         else:
             try:
                 actual, expected = _read_report(act_path, spec), _read_report(exp_path, spec)
-                entry.update(measure_difference(actual, expected))
+                mode = spec.get("compare", {}).get("mode", "full")
+                entry.update(measure_difference(actual, expected, mode))
                 tol = base.merged(spec.get("tolerances"))
-                scored = compare_annotated_scored(actual, expected, tol, spec.get("compare", {}).get("mode", "full"))
+                scored = compare_annotated_scored(actual, expected, tol, mode)
                 entry["ok"], entry["score"] = not scored.mismatches, scored.score
             except (rio.FormatError, OSError, KeyError) as e:
                 entry.update(comparable=False, reason=f"cannot read: {e}", ok=False)
