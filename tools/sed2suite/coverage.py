@@ -1,9 +1,8 @@
 """Which SED2 elements the semantic test cases cover.
 
     python -m sed2suite.coverage                  # print the report
-    python -m sed2suite.coverage --write          # write docs/COVERAGE.md
-    python -m sed2suite.coverage --check          # exit 1 if an element has no case and is not deferred on purpose,
-                                                  # or docs/COVERAGE.md is out of date
+    python -m sed2suite.coverage --write          # write docs/COVERAGE.md (git-ignored; CI publishes the report instead)
+    python -m sed2suite.coverage --check          # exit 1 if an element has no case and is not deferred on purpose
 
 The elements are the component tags of tags.json (one per `_type`, plus a few untyped parts such as loop variables).  A
 case covers the elements its document uses.  The report also counts, per element, the cases that each backend was
@@ -91,7 +90,7 @@ def render(data: dict) -> str:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true", help="write docs/COVERAGE.md")
-    ap.add_argument("--check", action="store_true", help="fail on an uncovered element or a stale COVERAGE.md")
+    ap.add_argument("--check", action="store_true", help="fail on an uncovered element or a stale deferral")
     args = ap.parse_args(argv)
     data = collect()
     text = render(data)
@@ -107,15 +106,6 @@ def main(argv=None) -> int:
             status = 1
         for t in stale_deferrals(data):
             print(f"error: {t} is listed as deferred but now has cases; remove it from DEFERRED", file=sys.stderr)
-            status = 1
-        try:
-            with open(REPORT_PATH, "r", encoding="utf-8", newline="") as f:
-                current = f.read()
-        except OSError:
-            current = None
-        if current != text:
-            print("error: docs/COVERAGE.md is missing or out of date (run python -m sed2suite.coverage --write)",
-                  file=sys.stderr)
             status = 1
     return status
 

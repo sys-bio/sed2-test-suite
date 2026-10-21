@@ -9,7 +9,7 @@ every case has been run through the pySED2Translate backends (roadrunner, COPASI
 analysis) and agrees on each backend that can run it (`settings.json` lists them).  They cover constants, calculations and data manipulation, ODE time
 courses, steady states and Jacobians, flux balance analysis, ranges and repeats (Scatter, Loop, ParameterScan), ModelChange (`setValues`,
 `removeElements`), ModelElementList, CsvImport and the data behind Plot2D and Plot3D.  What is not yet covered, and why,
-is in [docs/COVERAGE.md](docs/COVERAGE.md) and [docs/deferred.md](docs/deferred.md): chiefly stochastic simulation,
+is in the coverage report (`python -m sed2suite.coverage`; CI shows it in each run's summary) and [docs/deferred.md](docs/deferred.md): chiefly stochastic simulation,
 DataImport, aggregations and task parameters.
 
 ## Layout
@@ -21,7 +21,6 @@ cases/
   stochastic/  stochastic simulations and DrawFromDistribution (filled in later)
 docs/FORMATS.md        exact file formats for results and settings (normative)
 docs/PROMOTION.md      the checklist that makes a case canonical, and the sign-off in each description
-docs/COVERAGE.md       which SED2 elements have cases (generated; deferred elements and why)
 docs/deferred.md       what is not tested yet because the specification has not decided it
 authoring/             the scripts that write the cases (see below)
 schemas/               JSON Schemas (settings.json, disagreements.json)
@@ -69,7 +68,7 @@ python -m pytest                              # tests for the tools
 python generate_tags.py --all --check         # tag blocks are up to date
 python -m sed2suite.validate_suite            # every case is complete and valid, with its sign-off
 python -m sed2suite.disagreements --check     # the disagreement log is valid
-python -m sed2suite.coverage --check          # every element has a case or a stated reason, COVERAGE.md is current
+python -m sed2suite.coverage --check          # every element has a case or a stated reason
 python -m sed2suite.compare CASE_DIR ACTUAL_DIR   # compare a run's output against a case
 ```
 
